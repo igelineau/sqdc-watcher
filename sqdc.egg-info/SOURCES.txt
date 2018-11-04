@@ -1,0 +1,4 @@
+sqdc.egg-info/PKG-INFO
+sqdc.egg-info/SOURCES.txt
+sqdc.egg-info/dependency_links.txt
+sqdc.egg-info/top_level.txt
