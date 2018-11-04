@@ -1,55 +1,30 @@
-from tabulate import tabulate
-from lib.client import SqdcClient
 import json
+import argparse
+import logging
 
-is_online = False
-
-
-def format_product(product):
-    in_stock_str = 'In stock' if product['in_stock'] else 'Out of stock'
-    variants_in_stock = [v for v in product['variants'] if v['in_stock']]
-    variants_descriptions = ', '.join(
-        [str(float(v['specifications']['GramEquivalent']['Value'])) + ' g' for v in variants_in_stock])
-    return '[{}] - {} ({}), quantities available: {}'.format(in_stock_str, product['title'], product['brand'],
-                                                             variants_descriptions)
+from lib.formatter import SqdcFormatter
+from lib.client import SqdcClient
 
 
-def format_variants_available(product):
-    variants_in_stock = [v for v in product['variants'] if v['in_stock']]
-    variants_descriptions = ', '.join(
-        [str(float(v['specifications']['GramEquivalent']['Value'])) + ' g' for v in variants_in_stock])
-    return variants_descriptions
 
 
-def format_brand_and_supplier(product):
-    variant_with_specifications = [v for v in product['variants'] if 'specifications' in v][0]
-    brand = product['brand']
-    producerName = variant_with_specifications['specifications']['ProducerName']['Value']
-    displayString = brand
-    if producerName != brand:
-        displayString += ' (' + producerName + ')'
+def parse_args():
+    parser = argparse.ArgumentParser(description='Watch SQDC products')
+    parser.add_argument('watch', action='store_true')
+    parser.add_argument('--only-from-cache', action='store_true')
+    parser.add_argument('--watch-interval', type=int, default=5, help='watcher execution interval, in minutes.')
+    return parser.parse_args()
 
-    return displayString
+logging.basicConfig(level=logging.INFO)
 
-
-def print_products_table(products):
-    headers = ['Name', 'In Stock', 'Brand', 'Formats available']
-    tabulated_data = [[p['title'], p['in_stock'], format_brand_and_supplier(p), format_variants_available(p)]
-                      for p in products]
-    print(tabulate(tabulated_data, headers=headers))
-
-
+args = parse_args()
 client = SqdcClient()
 
-if is_online:
+if args.only_from_cache:
+    products = json.load(open('products.json', 'r'))
+else:
     products = client.get_products()
     json.dump(products, open('products.json', 'w+'))
-else:
-    products = json.load(open('products.json', 'r'))
-
-in_stock_products = [p for p in products if p['in_stock']]
 
 products_in_stock = [p for p in products if p['in_stock']]
-print_products_table(products_in_stock)
-# for product in in_stock_products:
-#    print(format_product(product))
+print(SqdcFormatter.build_products_table(products_in_stock))
