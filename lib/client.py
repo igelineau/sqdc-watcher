@@ -50,8 +50,8 @@ class SqdcClient:
         :type response: requests.Response
         """
 
-        log.info(
-            '{} {} completed in {:.2f}s'.format(
+        log.debug(
+            '{} {} completed in {:.2g}s'.format(
                 response.request.method,
                 response.request.url,
                 response.elapsed.total_seconds())
@@ -73,6 +73,13 @@ class SqdcClient:
 
         return response.json()
 
+    def post_to_slack(self, post_url, message):
+        log.debug('posting to slack')
+        payload = {'text': message, "mrkdwn": True}
+        response = self.session.post(post_url, json=payload)
+        self.log_request_elapsed(response)
+        response.raise_for_status()
+
     def get_products(self):
         page = 1
         is_finished = False
@@ -90,13 +97,20 @@ class SqdcClient:
         self.populate_products_variants(products)
 
         elapsed = time.time() - start_time
-        log.info('COMPLETED {} products scanned in {:.2f}s)'.format(len(products), elapsed))
+        log.info('COMPLETED {} products scanned in {:.2g}s'.format(len(products), elapsed))
         return products
 
     def get_products_html_page(self, pagenumber):
-        page_path = 'dried-flowers?SortBy=DisplayName&SortDirection=asc'
-        if pagenumber > 1:
-            page_path += '&page=' + str(pagenumber)
+        all_products = True
+        sort_params = 'SortDirection=asc'
+        page_param = 'page={}'.format(pagenumber)
+        keywords_param = 'keywords=*'
+
+        if all_products:
+            page_path = 'Search?{}&{}&{}'.format(sort_params, keywords_param, page_param)
+        else:
+            page_path = 'dried-flowers?{}&{}'.format(sort_params, page_param)
+
         return self._html_get(page_path)
 
     @staticmethod
@@ -119,6 +133,7 @@ class SqdcClient:
     def populate_products_variants(self, products):
         product_ids = [p['id'] for p in products]
         all_variants_prices = self.api_calculate_prices(product_ids)
+
         for product in products:
             product_id = product['id']
             variant_prices = [pprice['VariantPrices']
@@ -153,13 +168,9 @@ class SqdcClient:
                 variant['in_stock'] = True
                 variant['specifications'] = self.get_variant_specifications(pid, vid)
 
-    def get_product_variants_prices(self, product_id):
-        prices = self.api_calculate_prices([product_id])
-        return prices[0]['VariantPrices']
-
     def get_variant_specifications(self, product_id, variant_id):
         specifications = self.api_get_specifications(product_id, variant_id)[0]
-        attributes_reformated = {a['PropertyName']: dict(Value=a['Value'], Title=a['Title'])
+        attributes_reformated = {a['PropertyName']: a['Value']
                                  for a in specifications['Attributes']}
         return attributes_reformated
 

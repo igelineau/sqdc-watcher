@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="40f9eaed-ea23-4eff-b991-580b23aec80a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/dbstore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/formatter.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/formatter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/watcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/watcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tangerine-api/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tangerine-api/tangerine/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/tangerine/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tangerine-api/tangerine/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/tangerine/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tangerine/.idea/tangerine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine/.idea/tangerine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tangerine/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine/src/main.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-113249777">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="Pipfile" value="3" />
+          <entry key="VERSION" value="1" />
+          <entry key="json" value="13" />
+          <entry key="product_filters" value="1" />
+          <entry key="py" value="36" />
+          <entry key="sh" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Bash" value="2" />
+          <entry key="JSON" value="7" />
+          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="Python" value="36" />
+          <entry key="Scratch" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Pipfile" value="1" />
+          <entry key="Python Console" value="55" />
+          <entry key="json" value="63" />
+          <entry key="py" value="22671" />
+          <entry key="txt" value="19" />
+          <entry key="{'Referer': product_url}" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JSON" value="63" />
+          <entry key="PLAIN_TEXT" value="20" />
+          <entry key="Python" value="22731" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+                <marker date="1541385998170" expanded="true" signature="201:1054" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/formatter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+              <folding>
+                <marker date="1541484548825" expanded="true" signature="52:54" ph="..." />
+                <marker date="1541484548825" expanded="true" signature="1788:1992" ph="..." />
+                <marker date="1541484548825" expanded="true" signature="2045:2054" ph="..." />
+                <marker date="1541484548825" expanded="true" signature="3006:3178" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/products.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="22026" selection-start-column="22026" selection-end-column="22026" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/client.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2143">
+              <caret line="170" column="31" lean-forward="true" selection-start-line="170" selection-start-column="31" selection-end-line="170" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+                <marker date="1541484227060" expanded="true" signature="1449:1455" ph="..." />
+                <marker date="1541484227060" expanded="true" signature="1481:1490" ph="..." />
+                <marker date="1541484227060" expanded="true" signature="1754:2266" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/watcher.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="478">
+              <caret line="50" column="79" selection-start-line="50" selection-start-column="79" selection-end-line="50" selection-end-column="79" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1541484491336" expanded="true" signature="284:289" ph="..." />
+                <marker date="1541484491336" expanded="true" signature="2393:2601" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/dbstore.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+                <marker date="1541385629272" expanded="true" signature="70:75" ph="..." />
+                <marker date="1541385629272" expanded="true" signature="740:847" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/product_filters.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+              <folding>
+                <marker date="1541363230915" expanded="true" signature="21:26" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Setup Script" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>r</find>
+      <find>out_of_</find>
+      <find>brand</find>
+      <find>hexo</find>
+      <find>def format_product\(product\)\:\n    in_stock_str \= \'In stock\' if product\[\'in_stock\'\] else \'Out of stock\'\n    variants_in_stock \= \[v for v in product\[\'variants\'\] if v\[\'in_stock\'\]\]\n    variants_descriptions \= \'\, \'\.join\(\n        \[str\(float\(v\[\'specifications\'\]\[\'GramEquivalent\'\]\[\'Value\'\]\)\) \+ \' g\' for v in variants_in_stock\]\)\n    return \'\[\{\}\] \- \{\} \(\{\}\)\, quantities available\: \{\}\'\.format\(in_stock_str\, product\[\'title\'\]\, product\[\'brand\'\]\,\n                                                             variants_descriptions\)\n\n\ndef format_variants_available\(product\)\:\n    variants_in_stock \= \[v for v in product\[\'variants\'\] if v\[\'in_stock\'\]\]\n    variants_descriptions \= \'\, \'\.join\(\n        \[str\(float\(v\[\'specifications\'\]\[\'GramEquivalent\'\]\[\'Value\'\]\)\) \+ \' g\' for v in variants_in_stock\]\)\n    return variants_descriptions\n\n\ndef format_brand_and_supplier\(product\)\:\n    variant_with_specifications \= \[v for v in product\[\'variants\'\] if \'specifications\' in v\]\[0\]\n    brand \= product\[\'brand\'\]\n    producerName \= variant_with_specifications\[\'specifications\'\]\[\'ProducerName\'\]\[\'Value\'\]\n    displayString \= brand\n    if producerName \!\= brand\:\n        displayString \+\= \' \(\' \+ producerName \+ \'\)\'\n\n    return displayString</find>
+      <find>category</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/sqdc-api/sqdc/__init__.py" />
+        <option value="$PROJECT_DIR$/sqdc-cli/src/main.py" />
+        <option value="$PROJECT_DIR$/sqdc_cli/src/main.py" />
+        <option value="$PROJECT_DIR$/sqdc_cli/Pipfile" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/sqdc_cli/main.py" />
+        <option value="$PROJECT_DIR$/lib/exceptions.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.json" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.json" />
+        <option value="$PROJECT_DIR$/lib/product_filters.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_2.json" />
+        <option value="$PROJECT_DIR$/lib/dbstore.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/data/products.json" />
+        <option value="$PROJECT_DIR$/lib/client.py" />
+        <option value="$PROJECT_DIR$/lib/watcher.py" />
+        <option value="$PROJECT_DIR$/lib/formatter.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="-1" />
+    <option name="width" value="1920" />
+    <option name="height" value="1053" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SpellCheckingInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sqdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sqdc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sqdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sqdc" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sqdc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sqdc" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+      <recent name="$PROJECT_DIR$/sqdc_cli" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
+      <module name="sqdc" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.local/share/virtualenvs/sqdc-5g51pztu/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="40f9eaed-ea23-4eff-b991-580b23aec80a" name="Default Changelist" comment="" />
+      <created>1541221519515</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1541221519515</updated>
+    </task>
+    <task id="LOCAL-00001" summary="improve a lot !">
+      <created>1541373059675</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1541373059675</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16552451" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32972974" />
+      <window_info anchor="bottom" id="Python Console" weight="0.3297414" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.28556034" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32972974" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3437838" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3297414" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/sqdc-api" />
+      <path value="$PROJECT_DIR$/sqdc_api" />
+    </ignored-roots>
+    <MESSAGE value="improve a lot !" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve a lot !" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sqdc-api2/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc_api/sqdc/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc_api/sqdc/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc_cli/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc_cli/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tangerine/src/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tangerine-api/tangerine/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tangerine-api/tangerine/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../tangerine-api/tangerine/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2295">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/VERSION">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/login.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/ig/sources/internal/python/sqdc/lib/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="124" column="35" lean-forward="true" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/ig/sources/internal/python/sqdc/lib/formatter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/product_filters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+          <folding>
+            <marker date="1541363230915" expanded="true" signature="21:26" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.6/logging/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/products.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/ig/sources/internal/python/sqdc/lib/dbstore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/sqdc-5g51pztu/lib/python3.6/site-packages/requests/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="601" column="13" selection-start-line="601" selection-start-column="13" selection-end-line="601" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1541385998170" expanded="true" signature="201:1054" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/dbstore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <marker date="1541385629272" expanded="true" signature="70:75" ph="..." />
+            <marker date="1541385629272" expanded="true" signature="740:847" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2143">
+          <caret line="170" column="31" lean-forward="true" selection-start-line="170" selection-start-column="31" selection-end-line="170" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+            <marker date="1541484227060" expanded="true" signature="1449:1455" ph="..." />
+            <marker date="1541484227060" expanded="true" signature="1481:1490" ph="..." />
+            <marker date="1541484227060" expanded="true" signature="1754:2266" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/watcher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="50" column="79" selection-start-line="50" selection-start-column="79" selection-end-line="50" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1541484491336" expanded="true" signature="284:289" ph="..." />
+            <marker date="1541484491336" expanded="true" signature="2393:2601" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/formatter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+          <folding>
+            <marker date="1541484548825" expanded="true" signature="52:54" ph="..." />
+            <marker date="1541484548825" expanded="true" signature="1788:1992" ph="..." />
+            <marker date="1541484548825" expanded="true" signature="2045:2054" ph="..." />
+            <marker date="1541484548825" expanded="true" signature="3006:3178" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/products.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22026" selection-start-column="22026" selection-end-column="22026" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
