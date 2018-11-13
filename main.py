@@ -30,7 +30,7 @@ log_level_table = {
 args = parse_args()
 logging.basicConfig(level=log_level_table[args.log_level.lower()],
                     datefmt='%Y-%m-%d %H:%M:%S',
-                    format='%(levelname)s:%(name)s: %(asctime)s %(message)s', )
+                    format='%(levelname)s:%(name)s: %(asctime)s - %(message)s')
 
 if args.watch:
     stop_event = Event()

@@ -5,6 +5,8 @@ import requests
 from bs4 import BeautifulSoup
 import logging
 
+from lib.product import Product
+
 DEFAULT_LOCALE = 'en-CA'
 DOMAIN = 'https://www.sqdc.ca'
 BASE_URL = DOMAIN + '/' + DEFAULT_LOCALE
@@ -75,30 +77,32 @@ class SqdcClient:
 
     def post_to_slack(self, post_url, message):
         log.debug('posting to slack')
-        payload = {'text': message, "mrkdwn": True}
+        payload = {'text': message, "mrkdwn": True, "mrkdwn_in": ["text"]}
         response = self.session.post(post_url, json=payload)
         self.log_request_elapsed(response)
         response.raise_for_status()
 
-    def get_products(self):
+    def get_products(self) -> Product:
         page = 1
         is_finished = False
         products = []
         start_time = time.time()
         while not is_finished:
-            log.info('PROCESS results page {}'.format(page))
+            log.debug('PROCESS results page {}'.format(page))
             products_html = self.get_products_html_page(page)
             products_in_page = self.parse_products_html(products_html)
             is_finished = len(products_in_page) == 0
             if not is_finished:
                 page += 1
             products += products_in_page
-
         self.populate_products_variants(products)
 
         elapsed = time.time() - start_time
-        log.info('COMPLETED {} products scanned in {:.2g}s'.format(len(products), elapsed))
-        return products
+        log.info('COMPLETED - {} products in {} pages scanned in {:.2g}s'.format(len(products), page - 1, elapsed))
+
+        return sorted(
+            [Product(p) for p in products],
+            key=lambda p: p.get_specification('LevelTwoCategory'))
 
     def get_products_html_page(self, pagenumber):
         all_products = True
@@ -131,6 +135,8 @@ class SqdcClient:
         return products
 
     def populate_products_variants(self, products):
+        log.debug('populating product variants')
+
         product_ids = [p['id'] for p in products]
         all_variants_prices = self.api_calculate_prices(product_ids)
 

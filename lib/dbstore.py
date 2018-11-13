@@ -2,6 +2,9 @@ from pathlib import Path
 import datetime
 import json
 
+from lib.product import Product
+
+
 class SqdcStore:
     def __init__(self, root_directory=None):
         self.dir = Path(Path.cwd().joinpath('data') if root_directory is None else root_directory)
@@ -15,11 +18,15 @@ class SqdcStore:
         self.config_file = self.dir.joinpath('config.json')
 
     def save_products(self, products):
-        self.products_file.write_text(json.dumps(products))
+        data_list = [p.data for p in products]
+        self.products_file.write_text(json.dumps(data_list))
         print('Saved to ' + self.products_file.absolute().as_posix())
 
     def get_products(self):
-        return [] if not self.products_file.exists() else json.loads(self.products_file.read_text())
+        if not self.products_file.exists():
+            return []
+        else:
+            return [Product(data) for data in json.loads(self.products_file.read_text())]
 
     def get_products_last_saved_timestamp(self):
         if self.products_file.exists():

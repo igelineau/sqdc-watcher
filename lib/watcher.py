@@ -3,6 +3,8 @@ import datetime
 from threading import Thread
 import traceback
 
+from typing import List
+from lib.product import Product
 from .client import SqdcClient
 from .formatter import SqdcFormatter
 from .dbstore import SqdcStore
@@ -40,7 +42,7 @@ class SqdcWatcher(Thread):
             log.info(SqdcFormatter.build_products_table(products_in_stock))
 
             prev_products = self.store.get_products()
-            new_products = [p for p in self.calculate_new_items(prev_products, products) if p['in_stock']]
+            new_products = [p for p in self.calculate_new_items(prev_products, products) if p.is_in_stock()]
             if len(new_products) == 0:
                 log.info('No new product available')
             else:
@@ -52,8 +54,7 @@ class SqdcWatcher(Thread):
 
                 log.info('Posting to Slack to announce the good news.')
                 self.post_new_products_to_slack(new_products)
-
-            self.store.save_products(products)
+                self.store.save_products(products)
 
         except:
             traceback.format_exc()
@@ -61,15 +62,15 @@ class SqdcWatcher(Thread):
             log.error(traceback.format_exc())
 
     def post_new_products_to_slack(self, new_products):
-        if self.slack_post_url != "":
+        if self.slack_post_url:
             message = '\n'.join(['- ' + SqdcFormatter.format_product(p) for p in new_products])
             self.client.post_to_slack(self.slack_post_url, message)
 
     @staticmethod
-    def calculate_new_items(prev_products, cur_products):
-        prev_ids = [p['id'] for p in prev_products]
-        cur_ids = [p['id'] for p in cur_products]
+    def calculate_new_items(prev_products: List[Product], cur_products: List[Product]):
+        prev_ids = [p.id for p in prev_products]
+        cur_ids = [p.id for p in cur_products]
         new_products = [pid
                         for pid in cur_ids
                         if pid not in prev_ids]
-        return [p for p in cur_products if p['id'] in new_products]
+        return [p for p in cur_products if p.id in new_products]
