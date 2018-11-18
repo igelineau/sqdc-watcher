@@ -13,11 +13,11 @@ class SqdcFormatter:
             [str(float(v['specifications']['GramEquivalent'])) + ' g' for v in variants_in_stock])
         url = product.get_property('url').replace('www.', '')
 
-        return '*{}* / {} - ({})'.format(
+        return '*{}* / {} - ({}) {}'.format(
             SqdcFormatter.format_name_with_type(product),
             product.get_property('brand'),
             variants_descriptions,
-            product.get_property('url').replace('www.', ''))
+            url)
 
     @staticmethod
     def format_variants_available(product: Product):
@@ -40,7 +40,7 @@ class SqdcFormatter:
     def format_name(product):
         name = product.get_property('title')
         strain = product.get_specification('Strain')
-        if strain:
+        if strain and strain.lower() != name.lower():
             name = '{} ({})'.format(strain, name)
         return name
 

@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40f9eaed-ea23-4eff-b991-580b23aec80a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/order.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqdc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqdc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/models/base_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/models/product_history.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/dbstore.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dbstore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/formatter.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/formatter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/product_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/product_filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/watcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/watcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tangerine-api/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tangerine-api/tangerine/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/tangerine/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tangerine-api/tangerine/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/tangerine/client.py" afterDir="false" />
@@ -39,22 +35,24 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="4098" value="2" />
           <entry key="Pipfile" value="3" />
           <entry key="VERSION" value="1" />
-          <entry key="json" value="13" />
+          <entry key="json" value="16" />
+          <entry key="list_all" value="1" />
           <entry key="product_filters" value="1" />
-          <entry key="py" value="45" />
-          <entry key="run_watcher" value="1" />
+          <entry key="py" value="56" />
+          <entry key="run_watcher" value="3" />
           <entry key="sh" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="3" />
-          <entry key="JSON" value="7" />
-          <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="45" />
-          <entry key="Scratch" value="6" />
+          <entry key="Bash" value="5" />
+          <entry key="JSON" value="9" />
+          <entry key="PLAIN_TEXT" value="8" />
+          <entry key="Python" value="56" />
+          <entry key="Scratch" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -63,16 +61,22 @@
           <entry key="Python Console" value="55" />
           <entry key="dummy" value="2" />
           <entry key="json" value="63" />
-          <entry key="py" value="25362" />
-          <entry key="txt" value="19" />
+          <entry key="py" value="26934" />
+          <entry key="txt" value="160" />
           <entry key="{'Referer': product_url}" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="63" />
-          <entry key="PLAIN_TEXT" value="22" />
-          <entry key="Python" value="25422" />
+          <entry key="PLAIN_TEXT" value="163" />
+          <entry key="Python" value="26994" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.checkout.local" value="1" />
+          <entry key="git.branch.create.new" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -80,29 +84,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-120">
-              <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-                <marker date="1541650400122" expanded="true" signature="201:1054" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/formatter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="281">
+              <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <marker date="1542082138610" expanded="true" signature="106:108" ph="..." />
-                <marker date="1542082138610" expanded="true" signature="1369:1562" ph="..." />
-                <marker date="1542082138610" expanded="true" signature="1615:1624" ph="..." />
-                <marker date="1542082138610" expanded="true" signature="2579:2642" ph="..." />
               </folding>
             </state>
           </provider>
@@ -111,77 +98,78 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-960">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="720">
+              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
               <folding>
-                <marker date="1541567880722" expanded="true" signature="1482:1488" ph="..." />
-                <marker date="1541567880722" expanded="true" signature="1514:1523" ph="..." />
-                <marker date="1541567880722" expanded="true" signature="1787:2322" ph="..." />
+                <element signature="e#0#16#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/product.py">
+        <entry file="file://$PROJECT_DIR$/run_watcher">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-              <folding>
-                <marker date="1541566767356" expanded="true" signature="14:19" ph="..." />
-                <marker date="1541566767356" expanded="true" signature="154:218" ph="..." />
-                <marker date="1541566767356" expanded="true" signature="447:540" ph="..." />
-                <marker date="1541566767356" expanded="true" signature="562:647" ph="..." />
-              </folding>
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/order.py">
+        <entry file="file://$PROJECT_DIR$/list_all">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/watcher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+            <state relative-caret-position="348">
+              <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
               <folding>
-                <marker date="1541636063464" expanded="true" signature="12:17" ph="..." />
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1542155830836" expanded="true" signature="340:345" ph="..." />
+                <marker date="1542155830836" expanded="true" signature="2435:2637" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/watcher.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="65" column="64" selection-start-line="65" selection-start-column="64" selection-end-line="65" selection-end-column="64" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-                <marker date="1542083330857" expanded="true" signature="340:345" ph="..." />
-                <marker date="1542083330857" expanded="true" signature="2454:2656" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/dbstore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="345">
+              <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
               <folding>
-                <marker date="1541566014248" expanded="true" signature="104:109" ph="..." />
+                <element signature="e#0#24#0" expanded="true" />
+                <marker date="1542505643469" expanded="true" signature="92:97" ph="..." />
+                <marker date="1542505643469" expanded="true" signature="1447:1453" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/product_filters.py">
+        <entry file="file://$PROJECT_DIR$/lib/models/product_history.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="180">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
               <folding>
-                <marker date="1541568154362" expanded="true" signature="55:60" ph="..." />
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1542177692606" expanded="true" signature="138:139" ph="..." />
+                <marker date="1542177692606" expanded="true" signature="138:143" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/models/base_model.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -214,13 +202,20 @@
       <find>hexo</find>
       <find>def format_product\(product\)\:\n    in_stock_str \= \'In stock\' if product\[\'in_stock\'\] else \'Out of stock\'\n    variants_in_stock \= \[v for v in product\[\'variants\'\] if v\[\'in_stock\'\]\]\n    variants_descriptions \= \'\, \'\.join\(\n        \[str\(float\(v\[\'specifications\'\]\[\'GramEquivalent\'\]\[\'Value\'\]\)\) \+ \' g\' for v in variants_in_stock\]\)\n    return \'\[\{\}\] \- \{\} \(\{\}\)\, quantities available\: \{\}\'\.format\(in_stock_str\, product\[\'title\'\]\, product\[\'brand\'\]\,\n                                                             variants_descriptions\)\n\n\ndef format_variants_available\(product\)\:\n    variants_in_stock \= \[v for v in product\[\'variants\'\] if v\[\'in_stock\'\]\]\n    variants_descriptions \= \'\, \'\.join\(\n        \[str\(float\(v\[\'specifications\'\]\[\'GramEquivalent\'\]\[\'Value\'\]\)\) \+ \' g\' for v in variants_in_stock\]\)\n    return variants_descriptions\n\n\ndef format_brand_and_supplier\(product\)\:\n    variant_with_specifications \= \[v for v in product\[\'variants\'\] if \'specifications\' in v\]\[0\]\n    brand \= product\[\'brand\'\]\n    producerName \= variant_with_specifications\[\'specifications\'\]\[\'ProducerName\'\]\[\'Value\'\]\n    displayString \= brand\n    if producerName \!\= brand\:\n        displayString \+\= \' \(\' \+ producerName \+ \'\)\'\n\n    return displayString</find>
       <find>category</find>
+      <find>mango</find>
     </findStrings>
     <replaceStrings>
       <replace />
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="improve-slack-formatting" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -238,15 +233,17 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_2.json" />
         <option value="$PROJECT_DIR$/data/products.json" />
         <option value="$PROJECT_DIR$/lib/Product.py" />
-        <option value="$PROJECT_DIR$/lib/dbstore.py" />
         <option value="$PROJECT_DIR$/lib/product.py" />
-        <option value="$PROJECT_DIR$/lib/client.py" />
         <option value="$PROJECT_DIR$/lib/product_filters.py" />
         <option value="$PROJECT_DIR$/lib/order.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/../../c#/MergeAndUploadVideos/MergeAndUpload/upload-script/main.py" />
-        <option value="$PROJECT_DIR$/lib/formatter.py" />
+        <option value="$PROJECT_DIR$/lib/client.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/lib/watcher.py" />
+        <option value="$PROJECT_DIR$/lib/formatter.py" />
+        <option value="$PROJECT_DIR$/lib/models/base_model.py" />
+        <option value="$PROJECT_DIR$/lib/models/product_history.py" />
+        <option value="$PROJECT_DIR$/lib/dbstore.py" />
       </list>
     </option>
   </component>
@@ -298,7 +295,9 @@
             </path>
             <path>
               <item name="sqdc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="upload-script" type="462c0819:PsiDirectoryNode" />
+              <item name="sqdc" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -308,7 +307,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../c#/MergeAndUploadVideos/MergeAndUpload/upload-script" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -371,7 +370,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541373059675</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="improve a lot ! Probably stable. Will save products file only after the slack message was successfully posted.">
+      <created>1542083869997</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1542083869997</updated>
+    </task>
+    <task id="LOCAL-00003" summary="WIP">
+      <created>1542151994356</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1542151994356</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -387,7 +400,7 @@
     <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16552451" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16552451" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -397,14 +410,40 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3297414" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32972974" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49973643" visible="true" weight="0.3286638" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49815497" weight="0.28556034" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.501845" side_tool="true" visible="true" weight="0.28556034" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.5002636" side_tool="true" visible="true" weight="0.3286638" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3297414" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -415,7 +454,9 @@
       <path value="$PROJECT_DIR$/sqdc_api" />
     </ignored-roots>
     <MESSAGE value="improve a lot !" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve a lot !" />
+    <MESSAGE value="improve a lot ! Probably stable. Will save products file only after the slack message was successfully posted." />
+    <MESSAGE value="WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/sqdc-api2/__init__.py" />
@@ -542,6 +583,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/product.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -582,71 +633,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/dbstore.py">
+    <entry file="file://$PROJECT_DIR$/data/products.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state>
+          <caret column="28818" selection-start-column="28813" selection-end-column="28818" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/formatter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
           <folding>
-            <marker date="1541566014248" expanded="true" signature="104:109" ph="..." />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_watcher">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/lib/models/base_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1541650400122" expanded="true" signature="201:1054" ph="..." />
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/product_history.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1542177692606" expanded="true" signature="138:139" ph="..." />
+            <marker date="1542177692606" expanded="true" signature="138:143" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-960">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="720">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
           <folding>
-            <marker date="1541567880722" expanded="true" signature="1482:1488" ph="..." />
-            <marker date="1541567880722" expanded="true" signature="1514:1523" ph="..." />
-            <marker date="1541567880722" expanded="true" signature="1787:2322" ph="..." />
+            <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/products.json">
+    <entry file="file://$PROJECT_DIR$/run_watcher">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="38" lean-forward="true" selection-start-column="38" selection-end-column="38" />
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/formatter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <marker date="1542082138610" expanded="true" signature="106:108" ph="..." />
-            <marker date="1542082138610" expanded="true" signature="1369:1562" ph="..." />
-            <marker date="1542082138610" expanded="true" signature="1615:1624" ph="..." />
-            <marker date="1542082138610" expanded="true" signature="2579:2642" ph="..." />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/0x556d29b04cd0.4098">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/list_all">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/watcher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="65" column="64" selection-start-line="65" selection-start-column="64" selection-end-line="65" selection-end-column="64" />
+        <state relative-caret-position="348">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1542083330857" expanded="true" signature="340:345" ph="..." />
-            <marker date="1542083330857" expanded="true" signature="2454:2656" ph="..." />
+            <marker date="1542155830836" expanded="true" signature="340:345" ph="..." />
+            <marker date="1542155830836" expanded="true" signature="2435:2637" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/dbstore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <marker date="1542505643469" expanded="true" signature="92:97" ph="..." />
+            <marker date="1542505643469" expanded="true" signature="1447:1453" ph="..." />
           </folding>
         </state>
       </provider>
