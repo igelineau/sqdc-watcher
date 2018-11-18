@@ -37,13 +37,7 @@ if args.watch:
     watcher = SqdcWatcher(stop_event, args.watch_interval * 60, args.slack_post_url)
     watcher.run()
 else:
-    # assume display
-    if args.only_from_cache:
-        products = json.load(open('products.json', 'r'))
-    else:
-        client = SqdcClient()
-        products = client.get_products()
-        json.dump(products, open('products.json', 'w+'))
-
-    products_in_stock = [p for p in products if p['in_stock']]
+    client = SqdcClient()
+    products = client.get_products()
+    products_in_stock = [p for p in products if p.is_in_stock()]
     print(SqdcFormatter.build_products_table(products_in_stock))
