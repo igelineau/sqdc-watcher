@@ -42,6 +42,7 @@ class SqdcClient:
         self.session.headers.update(
             {
                 'Accept-Language': DEFAULT_LOCALE,
+                'User-Agent': 'sqdc-watcher',
                 'X-Requested-With': 'XMLHttpRequest',
                 'Accept': 'application/json, text/javascript, */*; q=0.01'
             })
