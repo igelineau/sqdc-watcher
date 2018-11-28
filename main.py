@@ -10,11 +10,14 @@ from lib.watcher import SqdcWatcher
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Watch SQDC products')
-    parser.add_argument('--watch', action='store_true')
+    parser.add_argument(
+        '--watch',
+        action='store_true',
+        help='Monitor periodically the Sqdc website for new available products. If any found, post to Slack if the slack-post-url was provided.')
     parser.add_argument('--only-from-cache', action='store_true')
     parser.add_argument('--watch-interval', type=int, default=5, help='watcher execution interval, in minutes.')
     parser.add_argument('--log-level', default='info')
-    parser.add_argument('--slack-post-url')
+    parser.add_argument('--slack-post-url', help='The URL to a slack incoming webhook that will be used if new products were found while in watch mode.')
     return parser.parse_args()
 
 
