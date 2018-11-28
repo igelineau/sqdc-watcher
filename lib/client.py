@@ -125,14 +125,22 @@ class SqdcClient:
         products = []
         for ptag in product_tags:
             title_anchor = ptag.select_one('a[data-qa="search-product-title"]')
-            product = {
-                'title': title_anchor.contents[0],
-                'id': title_anchor['data-productid'],
-                'url': DOMAIN + title_anchor['href'],
-                'in_stock': 'product-outofstock' not in ptag['class'],
-                'brand': ptag.select_one('div[class="js-equalized-brand"]').contents[0]
-            }
-            products.append(product)
+            title = title_anchor.contents[0]
+            url = DOMAIN + title_anchor['href']
+            try:
+                brand_tag = ptag.select_one('div[class="js-equalized-brand"]');
+                brand = "" if len(brand_tag.contents) == 0 else brand_tag.contents[0]
+                product = {
+                    'title': title,
+                    'id': title_anchor['data-productid'],
+                    'url': url,
+                    'in_stock': 'product-outofstock' not in ptag['class'],
+                    'brand': brand
+                }
+                products.append(product)
+            except:
+                print('Failed to parse product ' + title + ' URL=' + url)
+
         return products
 
     def populate_products_variants(self, products):
