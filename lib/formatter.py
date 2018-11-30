@@ -55,16 +55,20 @@ class SqdcFormatter:
     @staticmethod
     def format_cbd(product):
         if product.has_specifications():
-            cbd_min = float(product.get_specification('CBDContentMin'))
-            cbd_max = float(product.get_specification('CBDContentMax'))
+            raw_cbd_min = product.get_specification('CBDContentMin')
+            raw_cbd_max = product.get_specification('CBDContentMax')
+            cbd_min = -1 if raw_cbd_min is None else float(raw_cbd_min)
+            cbd_max = -1 if raw_cbd_max is None else float(raw_cbd_max)
             cbd = '0' if cbd_min == 0 else '{:>4.1f}-{:>4.1f}'.format(cbd_min, cbd_max)
             return cbd
 
     @staticmethod
     def format_thc(product: Product):
         if product.has_specifications():
-            thc_min = float(product.get_specification('THCContentMin'))
-            thc_max = float(product.get_specification('THCContentMax'))
+            raw_thc_min = product.get_specification('THCContentMin')
+            raw_thc_max = product.get_specification('THCContentMax')
+            thc_min = -1 if raw_thc_min is None else float(raw_thc_min)
+            thc_max = -1 if raw_thc_max is None else float(raw_thc_max)
             thc = '0' if thc_min == 0 else '{:>4.1f}-{:>4.1f}'.format(thc_min, thc_max)
             return thc
 
