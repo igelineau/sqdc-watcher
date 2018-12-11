@@ -42,7 +42,7 @@ class SqdcWatcher(Thread):
             log.info(SqdcFormatter.build_products_table(products_in_stock))
 
             prev_products = self.store.get_products()
-            new_products = [p for p in self.calculate_new_items(prev_products, products)]
+            new_products = [p for p in self.calculate_new_items(prev_products, products_in_stock)]
             if len(new_products) == 0:
                 log.info('No new product available')
             else:
