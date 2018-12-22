@@ -1,5 +1,6 @@
 import functools
 import time
+from typing import List
 
 import requests
 from bs4 import BeautifulSoup
@@ -48,10 +49,7 @@ class SqdcClient:
             })
 
     @staticmethod
-    def log_request_elapsed(response):
-        """
-        :type response: requests.Response
-        """
+    def log_request_elapsed(response: requests.Response):
 
         log.debug(
             '{} {} completed in {:.2g}s'.format(
@@ -83,12 +81,15 @@ class SqdcClient:
         self.log_request_elapsed(response)
         response.raise_for_status()
 
-    def get_products(self) -> Product:
+    def get_products(self, max_pages=None) -> List[Product]:
+        if max_pages is None:
+            max_pages = 999999
+
         page = 1
         is_finished = False
         products = []
         start_time = time.time()
-        while not is_finished:
+        while not is_finished and page <= max_pages:
             log.debug('PROCESS results page {}'.format(page))
             products_html = self.get_products_html_page(page)
             products_in_page = self.parse_products_html(products_html)
@@ -138,8 +139,9 @@ class SqdcClient:
                     'brand': brand
                 }
                 products.append(product)
-            except:
+            except Exception as e:
                 print('Failed to parse product ' + title + ' URL=' + url)
+                print(e)
 
         return products
 
