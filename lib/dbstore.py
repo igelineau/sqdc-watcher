@@ -1,12 +1,15 @@
+import logging
 from pathlib import Path
 import datetime
 import json
 
 from lib.product import Product
 
+log = logging.getLogger(__name__)
+
 
 class SqdcStore:
-    def __init__(self, root_directory=None):
+    def __init__(self, is_test, root_directory=None):
         self.dir = Path(Path.cwd().joinpath('data') if root_directory is None else root_directory)
         if self.dir.is_file():
             raise FileExistsError('The path must be a directory. a file exists here: {}'.format(self.dir))
@@ -14,8 +17,10 @@ class SqdcStore:
         if not self.dir.exists():
             self.dir.mkdir()
 
-        self.products_file = self.dir.joinpath('products.json')
+        test_suffix = '-test' if is_test else ''
+        self.products_file = self.dir.joinpath('products{}.json'.format(test_suffix))
         self.config_file = self.dir.joinpath('config.json')
+        log.info('INITIALIZED - Using products file: {}'.format(self.products_file))
 
     def save_products(self, products):
         data_list = [p.data for p in products]

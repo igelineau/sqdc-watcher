@@ -14,13 +14,15 @@ log = logging.getLogger(__name__)
 
 
 class SqdcWatcher(Thread):
-    def __init__(self, event, interval=60 * 5, slack_post_url=""):
+    def __init__(self, event, is_test, interval=60 * 5, slack_post_url=""):
         Thread.__init__(self)
         self._stopped = event
         self.client = SqdcClient()
         self.interval = interval
-        self.store = SqdcStore()
+        self.store = SqdcStore(is_test)
         self.slack_post_url = slack_post_url
+        self.display_format = 'table'
+        self.is_test = is_test
 
     def run(self):
         log.info('INITIALIZED - interval = {}'.format(self.interval))
@@ -37,9 +39,8 @@ class SqdcWatcher(Thread):
     def execute_scan(self):
         try:
             products = self.client.get_products()
-
             products_in_stock = ProductFilters.in_stock(products)
-            log.info(SqdcFormatter.build_products_table(products_in_stock))
+            log.info(SqdcFormatter.format_products(products_in_stock, self.display_format))
 
             prev_products = self.store.get_products()
             new_products = [p for p in self.calculate_new_items(prev_products, products_in_stock)]

@@ -1,3 +1,4 @@
+import re
 from typing import List
 
 from tabulate import tabulate
@@ -7,23 +8,26 @@ from .product import Product
 class SqdcFormatter:
 
     @staticmethod
-    def format_product(product: Product):
-        variants_in_stock = product.get_variants_in_stock()
-        variants_descriptions = ', '.join(
-            [str(float(v['specifications']['GramEquivalent'])) + ' g' for v in variants_in_stock])
-        url = product.get_property('url').replace('www.', '')
+    def format_products(products: List[Product], display_format='table'):
+        if display_format == 'table':
+            return SqdcFormatter.build_products_table(products)
+        else:
+            return '\n'.join([SqdcFormatter.format_product(p) for p in products])
 
-        return '*{}* / {} - ({}) {}'.format(
+    @staticmethod
+    def format_product(product: Product):
+        return '*{}* / {} - ({} {}) {}'.format(
             SqdcFormatter.format_name_with_type(product),
             product.get_property('brand'),
-            variants_descriptions,
-            url)
+            SqdcFormatter.format_category(product),
+            SqdcFormatter.format_variants_available(product),
+            SqdcFormatter.format_url(product))
 
     @staticmethod
     def format_variants_available(product: Product):
         variants_in_stock = product.get_variants_in_stock()
-        variants_descriptions = ', '.join(
-            [str(float(v['specifications']['GramEquivalent'])) + ' g' for v in variants_in_stock])
+        quantities = sorted([float(v['specifications']['GramEquivalent']) for v in variants_in_stock])
+        variants_descriptions = ', '.join([SqdcFormatter.trim_zeros(quantity) + 'g' for quantity in quantities])
         return variants_descriptions
 
     @staticmethod
@@ -57,24 +61,36 @@ class SqdcFormatter:
         if product.has_specifications():
             raw_cbd_min = product.get_specification('CBDContentMin')
             raw_cbd_max = product.get_specification('CBDContentMax')
-            cbd_min = 0 if raw_cbd_min is None else float(raw_cbd_min)
-            cbd_max = 0 if raw_cbd_max is None else float(raw_cbd_max)
-            cbd = '0' if cbd_min == 0 else '{:>4.1f}-{:>4.1f}'.format(cbd_min, cbd_max)
-            return cbd
+            return SqdcFormatter.format_cannabinoid_concentration(product, raw_cbd_min, raw_cbd_max)
 
     @staticmethod
     def format_thc(product: Product):
         if product.has_specifications():
             raw_thc_min = product.get_specification('THCContentMin')
             raw_thc_max = product.get_specification('THCContentMax')
-            thc_min = 0 if raw_thc_min is None else float(raw_thc_min)
-            thc_max = 0 if raw_thc_max is None else float(raw_thc_max)
-            thc = '0' if thc_min == 0 else '{:>4.1f}-{:>4.1f}'.format(thc_min, thc_max)
-            return thc
+            return SqdcFormatter.format_cannabinoid_concentration(product, raw_thc_min, raw_thc_max)
+
+    @staticmethod
+    def format_cannabinoid_concentration(product, min_value, max_value):
+        unit_of_measure = product.get_specification('UnitOfMeasureThcCbd')
+        min_int = int(float(min_value))
+        max_int = int(float(max_value))
+        formatted_value_or_range = '{}'.format(min_int) if min_int == max_int else '{min} - {max}'.format(min=min_int,
+                                                                                                          max=max_int)
+        if formatted_value_or_range != '0':
+            formatted_value_or_range += unit_of_measure
+        return formatted_value_or_range
 
     @staticmethod
     def format_type(product: Product):
         return product.get_specification('CannabisType')
+
+    @staticmethod
+    def format_url(product):
+        url = product.get_property('url').replace('www.', '')
+        # remove the variant path component
+        url = re.sub(r'(.+/\d+-P)(/\d+)', r'\1', url)
+        return url
 
     @staticmethod
     def build_products_table(products: List[Product], prepend_with_newline=True):
@@ -96,10 +112,14 @@ class SqdcFormatter:
              SqdcFormatter.format_thc(p),
              SqdcFormatter.format_cbd(p),
              SqdcFormatter.format_variants_available(p),
-             p.get_property('url')] for p in products]
+             SqdcFormatter.format_url(p)] for p in products]
         prefix = '\n' if prepend_with_newline else ''
         return prefix + tabulate(tabulated_data, headers=headers) + '\n'
 
     @staticmethod
     def format_category(product: Product):
         return product.get_specification('LevelTwoCategory')
+
+    @staticmethod
+    def trim_zeros(text):
+        return '' if text is None else str.format('{}', text).rstrip('0').rstrip('.').rjust(2)
