@@ -1,4 +1,3 @@
-import json
 import argparse
 import logging
 from threading import Event
@@ -6,6 +5,7 @@ from threading import Event
 from lib.formatter import SqdcFormatter
 from lib.client import SqdcClient
 from lib.watcher import SqdcWatcher
+from lib.watcherOptions import WatcherOptions
 
 
 def parse_args():
@@ -27,9 +27,17 @@ def parse_args():
         '--slack-post-url',
         help='The URL to a slack incoming webhook that will be used if new products were found while in watch mode.')
     parser.add_argument(
+        '--slack-oauth-token',
+        help='The Slack OAuth Token that will be used to use the Slack API')
+    parser.add_argument(
         '--display-format',
         help='Format of the products displayed in the console.',
         default='table', choices=['list', 'table'])
+    parser.add_argument(
+        '--slack-port',
+        help='The port of the server listening for slack commands',
+        default='19019'
+    )
     parser.add_argument(
         '--test',
         action='store_true',
@@ -55,8 +63,15 @@ logging.basicConfig(level=log_level_table[args.log_level.lower()],
 
 if args.watch:
     stop_event = Event()
-    watcher = SqdcWatcher(stop_event, args.test, args.watch_interval * 60, args.slack_post_url)
-    watcher.display_format = args.display_format
+    options = WatcherOptions.default()
+    options.slack_post_url = args.slack_post_url
+    options.is_test_mode = args.test
+    options.display_format = args.display_format
+    options.slack_token = args.slack_oauth_token
+    options.interval = args.watch_interval
+    options.slack_port = int(args.slack_port)
+
+    watcher = SqdcWatcher(stop_event, options)
     watcher.run()
 else:
     client = SqdcClient()

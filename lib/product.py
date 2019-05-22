@@ -19,5 +19,5 @@ class Product:
     def get_variants_in_stock(self):
         return [v for v in self.data['variants'] if v['in_stock']]
 
-    def get_property(self, name):
+    def get_property(self, name) -> str:
         return self.data[name]

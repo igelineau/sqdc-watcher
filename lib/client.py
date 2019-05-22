@@ -4,13 +4,17 @@ from typing import List
 
 import requests
 from bs4 import BeautifulSoup
+import slack
 import logging
 
+from lib.formatter import SqdcFormatter
 from lib.product import Product
 
 DEFAULT_LOCALE = 'en-CA'
 DOMAIN = 'https://www.sqdc.ca'
 BASE_URL = DOMAIN + '/' + DEFAULT_LOCALE
+
+SLACK_API_URL = 'https://slack.com/api'
 
 log = logging.getLogger(__name__)
 
@@ -30,11 +34,13 @@ def api_response(root_key=''):
 
 
 class SqdcClient:
-    def __init__(self, session=None, locale=DEFAULT_LOCALE):
+    def __init__(self, slack_token, session=None, locale=DEFAULT_LOCALE):
         self.locale = locale
         if session is None:
             session = requests.Session()
         self.session = session
+
+        self.slack_client = slack.WebClient(slack_token)
 
         self._init_session()
 
@@ -47,6 +53,7 @@ class SqdcClient:
                 'X-Requested-With': 'XMLHttpRequest',
                 'Accept': 'application/json, text/javascript, */*; q=0.01'
             })
+
 
     @staticmethod
     def log_request_elapsed(response: requests.Response):
@@ -80,6 +87,13 @@ class SqdcClient:
         response = self.session.post(post_url, json=payload)
         self.log_request_elapsed(response)
         response.raise_for_status()
+
+    def send_slack_message(self, to_username: str, text: str):
+        self.slack_client.chat_postMessage(
+            channel='@{}'.format(to_username),
+            text=text,
+            username='Sqdc Trigger Notifications'
+        )
 
     def get_products(self, max_pages=None) -> List[Product]:
         if max_pages is None:

@@ -4,25 +4,39 @@ from threading import Thread
 import traceback
 
 from typing import List
+
 from lib.product import Product
+from lib.server import SlackEndpointServer
+from lib.watcherOptions import WatcherOptions
 from .client import SqdcClient
 from .formatter import SqdcFormatter
-from .dbstore import SqdcStore
+from .SqdcStore import SqdcStore
 from .product_filters import ProductFilters
 
 log = logging.getLogger(__name__)
 
 
 class SqdcWatcher(Thread):
-    def __init__(self, event, is_test, interval=60 * 5, slack_post_url=""):
+    def __init__(self, event, options: WatcherOptions = WatcherOptions.default()):
         Thread.__init__(self)
         self._stopped = event
-        self.client = SqdcClient()
-        self.interval = interval
-        self.store = SqdcStore(is_test)
-        self.slack_post_url = slack_post_url
+        self.client = SqdcClient(options.slack_token)
+        self.store = SqdcStore(options.is_test_mode)
+        self.slack_post_url = options.slack_post_url
         self.display_format = 'table'
-        self.is_test = is_test
+        self.is_test = options.is_test_mode
+        self.interval = options.interval * 60
+        self.display_format = options.display_format
+
+        notification_rules = self.store.get_all_notification_rules()
+        if len(notification_rules) > 0:
+            log.info('loaded {} notification rules:'.format(len(notification_rules)))
+            for username, rules in notification_rules.items():
+                log.info('To @{}:'.format(username))
+                for rule in rules:
+                    log.info('  {}'.format(rule.keyword))
+
+        self.slack_server = SlackEndpointServer(options.slack_port, self, self.store)
 
     def run(self):
         log.info('INITIALIZED - interval = {}'.format(self.interval))
@@ -50,6 +64,8 @@ class SqdcWatcher(Thread):
                 log.info('There are {} new products available since last scan :'.format(len(new_products)))
                 log.info(SqdcFormatter.build_products_table(new_products))
 
+                self.apply_notification_rules(new_products)
+
                 log.info('List of all available products:')
                 log.info(SqdcFormatter.build_products_table(products_in_stock))
 
@@ -62,7 +78,7 @@ class SqdcWatcher(Thread):
             log.error('watcher job execution encountered an error:')
             log.error(traceback.format_exc())
 
-    def post_new_products_to_slack(self, new_products):
+    def post_new_products_to_slack(self, new_products: List[Product]):
         if self.slack_post_url:
             message = '\n'.join(['- ' + SqdcFormatter.format_product(p) for p in new_products])
             self.client.post_to_slack(self.slack_post_url, message)
@@ -75,3 +91,22 @@ class SqdcWatcher(Thread):
                         for pid in cur_ids
                         if pid not in prev_ids]
         return [p for p in cur_products if p.id in new_products]
+
+    def apply_notification_rules(self, products: List[Product]):
+
+        all_rules = self.store.get_all_notification_rules()
+        for username, rules in all_rules.items():
+            products_found = []
+            for product in products:
+                for rule in rules:
+                    if product.get_specification('Strain').lower().find(rule.keyword.lower()) >= 0:
+                        products_found.append(product)
+            nb_found = len(products_found)
+            if nb_found > 0:
+                message = '------------\n' + \
+                          '*{} new available products are matching your notification alerts:*\n'.format(nb_found)
+                for product in products_found:
+                    message += '   - {}\n'.format(SqdcFormatter.format_product(product))
+                message += '------------'
+                self.client.send_slack_message(username, message)
+

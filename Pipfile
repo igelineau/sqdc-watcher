@@ -9,6 +9,8 @@ name = "pypi"
 requests = "*"
 "beautifulsoup4" = "*"
 tabulate = "*"
+slackclient = "*"
+tornado = "*"
 
 [requires]
 python_version = "3.6"

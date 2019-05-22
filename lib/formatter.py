@@ -11,7 +11,7 @@ class SqdcFormatter:
     def format_products(products: List[Product], display_format='table'):
         if display_format == 'table':
             return SqdcFormatter.build_products_table(products)
-        else:
+        elif display_format == 'list':
             return '\n'.join([SqdcFormatter.format_product(p) for p in products])
 
     @staticmethod
@@ -34,11 +34,27 @@ class SqdcFormatter:
     def format_brand_and_supplier(product: Product):
         producer_name = product.get_specification('ProducerName')
         brand = product.get_property('brand')
-        display_string = brand
-        if producer_name != brand:
-            display_string += ' (' + producer_name + ')'
+        components = []
+        if SqdcFormatter.should_display_brand(brand):
+            components.append(brand)
+        if SqdcFormatter.should_display_supplier(producer_name) and producer_name != brand:
+            components.append(producer_name)
+        if len(components) == 0:
+            components.append(brand)
+
+        display_string = components[0]
+        if len(components) > 1:
+            display_string += ' (' + components[1] + ')'
 
         return display_string
+
+    @staticmethod
+    def should_display_brand(brand):
+        return brand not in ['Plain Packaging']
+
+    @staticmethod
+    def should_display_supplier(supplier):
+        return supplier not in ['Aurora Cannabis']
 
     @staticmethod
     def format_name(product):
@@ -101,7 +117,7 @@ class SqdcFormatter:
             'Type',
             'THC',
             'CBD',
-            'Formats available',
+            'avail. formats',
             'URL'
         ]
         tabulated_data = [
