@@ -7,6 +7,7 @@ from typing import List
 
 from lib.product import Product
 from lib.server import SlackEndpointServer
+from lib.slack_client import SlackClient
 from lib.watcherOptions import WatcherOptions
 from .client import SqdcClient
 from .formatter import SqdcFormatter
@@ -20,7 +21,8 @@ class SqdcWatcher(Thread):
     def __init__(self, event, options: WatcherOptions = WatcherOptions.default()):
         Thread.__init__(self)
         self._stopped = event
-        self.client = SqdcClient(options.slack_token)
+        self.client = SqdcClient()
+        self.slack_client = SlackClient(options.slack_token)
         self.store = SqdcStore(options.is_test_mode)
         self.slack_post_url = options.slack_post_url
         self.display_format = 'table'
@@ -41,7 +43,8 @@ class SqdcWatcher(Thread):
     def run(self):
         log.info('INITIALIZED - interval = {}'.format(self.interval))
         last_saved_products_rel = datetime.datetime.now() - self.store.get_products_last_saved_timestamp()
-        print('Last successful execution : {:.0g}m ago'.format(last_saved_products_rel.total_seconds() / 60))
+        print('Last successful execution : {}m ago'.format(last_saved_products_rel))
+
         is_stopping = False
         while not is_stopping:
             self.execute_scan()
@@ -55,6 +58,8 @@ class SqdcWatcher(Thread):
             products = self.client.get_products()
             products_in_stock = ProductFilters.in_stock(products)
             log.info(SqdcFormatter.format_products(products_in_stock, self.display_format))
+
+            # self.apply_notification_rules(products_in_stock)
 
             prev_products = self.store.get_products()
             new_products = [p for p in self.calculate_new_items(prev_products, products_in_stock)]
@@ -108,5 +113,5 @@ class SqdcWatcher(Thread):
                 for product in products_found:
                     message += '   - {}\n'.format(SqdcFormatter.format_product(product))
                 message += '------------'
-                self.client.send_slack_message(username, message)
+                self.slack_client.chat_send_message(message, username)
 

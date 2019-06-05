@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup
 import slack
 import logging
 
-from lib.formatter import SqdcFormatter
 from lib.product import Product
 
 DEFAULT_LOCALE = 'en-CA'
@@ -34,13 +33,11 @@ def api_response(root_key=''):
 
 
 class SqdcClient:
-    def __init__(self, slack_token, session=None, locale=DEFAULT_LOCALE):
+    def __init__(self, session=None, locale=DEFAULT_LOCALE):
         self.locale = locale
         if session is None:
             session = requests.Session()
         self.session = session
-
-        self.slack_client = slack.WebClient(slack_token)
 
         self._init_session()
 
@@ -53,7 +50,6 @@ class SqdcClient:
                 'X-Requested-With': 'XMLHttpRequest',
                 'Accept': 'application/json, text/javascript, */*; q=0.01'
             })
-
 
     @staticmethod
     def log_request_elapsed(response: requests.Response):

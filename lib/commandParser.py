@@ -10,20 +10,21 @@ class CommandParser:
 
         add_match = re.compile('^add (.+)$').match(args)
         delete_match = re.compile('^(delete|del) (.+)$').match(args)
-        if args.strip() == "":
+        if args == "":
             return SlackWatchCommand(verb='list')
         elif add_match:
-            print(add_match)
-            # keyword
             args_array = [
-                add_match.group(1)
+                CommandParser.strip_arg(add_match.group(1))
             ]
             return SlackWatchCommand(verb='add', args=args_array)
         elif delete_match:
-            print(delete_match)
             args_array = [
-                delete_match.group(2)
+                CommandParser.strip_arg(delete_match.group(2))
             ]
             return SlackWatchCommand(verb='delete', args=args_array)
         else:
             raise Exception('command not understood')
+
+    @staticmethod
+    def strip_arg(arg: str):
+        return arg.strip().strip('"\'')
