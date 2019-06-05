@@ -4,12 +4,20 @@ import tornado.web
 
 from lib.SqdcStore import SqdcStore
 from lib.commandParser import CommandParser
+from lib.slack_client import SlackClient
 
 
 class SlackRequestHandler(tornado.web.RequestHandler):
     store: SqdcStore
 
     async def post(self):
+        signature = self.request.headers['X-Slack-Signature']
+        timestamp = self.request.headers['X-Slack-Request-Timestamp']
+        print('sig: ' + signature)
+        print(f'timestamp: {timestamp}')
+        if not SlackClient.verify_slack_request(signature, timestamp, self.request.body):
+            raise Exception('Slack slash command request not verified !')
+
         parsed_body = parse_qs(self.request.body)
 
         print(parsed_body)

@@ -1,4 +1,5 @@
 import threading
+from http.server import HTTPServer
 
 import tornado.ioloop
 import tornado.web
@@ -14,14 +15,8 @@ class SlackEndpointServer:
 
     @staticmethod
     def listen_server(port, watcher, store: SqdcStore):
+
         SlackRequestHandler.watcher = watcher
         SlackRequestHandler.store = store
-        server = tornado.web.Application([
-            (r"/", SlackRequestHandler)
-        ])
-
-        ioloop = tornado.ioloop.IOLoop()
-        ioloop.make_current()
-
-        server.listen(port)
-        ioloop.start()
+        httpd = HTTPServer(('0.0.0.0', port), SlackRequestHandler)
+        httpd.serve_forever()
