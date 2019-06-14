@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40f9eaed-ea23-4eff-b991-580b23aec80a" name="Default Changelist" comment="">
+    <list default="true" id="ceb23c94-8075-48a3-a235-c48e91bfcdc5" name="Default Changelist" comment="WIP / start replacing tornado with builtin HTTPServer">
+      <change afterPath="$PROJECT_DIR$/run_watcher_default.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/ig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqdc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqdc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
-    <list id="56cc4f71-7da3-4f87-a48e-12b601f17326" name="tangerine" comment="">
-      <change beforePath="$PROJECT_DIR$/../tangerine-api/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tangerine-api/tangerine/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/tangerine/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tangerine-api/tangerine/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine-api/tangerine/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tangerine/.idea/tangerine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine/.idea/tangerine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tangerine/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tangerine/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/SqdcStore.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/SqdcStore.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,96 +16,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-113249777">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="2" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="4098" value="2" />
-          <entry key="Pipfile" value="3" />
-          <entry key="VERSION" value="1" />
-          <entry key="json" value="16" />
-          <entry key="list_all" value="1" />
-          <entry key="product_filters" value="1" />
-          <entry key="py" value="58" />
-          <entry key="run_watcher" value="3" />
-          <entry key="sh" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Bash" value="5" />
-          <entry key="JSON" value="9" />
-          <entry key="PLAIN_TEXT" value="8" />
-          <entry key="Python" value="58" />
-          <entry key="Scratch" value="7" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="Pipfile" value="1" />
-          <entry key="Python Console" value="55" />
-          <entry key="dummy" value="2" />
-          <entry key="json" value="63" />
-          <entry key="py" value="26974" />
-          <entry key="txt" value="296" />
-          <entry key="{'Referer': product_url}" value="5" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JSON" value="63" />
-          <entry key="PLAIN_TEXT" value="299" />
-          <entry key="Python" value="27034" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages">
-        <counts>
-          <entry key="git.branch.checkout.local" value="1" />
-          <entry key="git.branch.create.new" value="2" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/slack_client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="41" column="63" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
+            <state relative-caret-position="645">
+              <caret line="48" selection-start-line="48" selection-end-line="51" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/formatter.py">
+        <entry file="file://$PROJECT_DIR$/lib/SlackRequestHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+            <state relative-caret-position="135">
+              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/client.py">
+        <entry file="file://$PROJECT_DIR$/lib/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="118" selection-start-line="118" selection-end-line="118" />
+            <state relative-caret-position="315">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -116,59 +55,65 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run_watcher">
+        <entry file="file://$PROJECT_DIR$/lib/SqdcStore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/list_all">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/watcher.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+            <state relative-caret-position="540">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1542575714537" expanded="true" signature="340:345" ph="..." />
-                <marker date="1542575714537" expanded="true" signature="2435:2637" ph="..." />
+                <marker date="1560400175589" expanded="true" signature="2538:2655" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/dbstore.py">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+            <state relative-caret-position="1080">
+              <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run_watcher">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/run_watcher_default.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/slackWatchCommand.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="24" selection-start-column="24" selection-end-column="24" />
               <folding>
-                <element signature="e#0#24#0" expanded="true" />
+                <marker date="1558417588931" expanded="true" signature="24:29" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/exceptions.py">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" selection-start-line="8" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+            <state relative-caret-position="975">
+              <caret line="72" selection-start-line="72" selection-end-line="72" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -178,27 +123,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Setup Script" />
         <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>r</find>
-      <find>out_of_</find>
-      <find>brand</find>
-      <find>hexo</find>
-      <find>def format_product\(product\)\:\n    in_stock_str \= \'In stock\' if product\[\'in_stock\'\] else \'Out of stock\'\n    variants_in_stock \= \[v for v in product\[\'variants\'\] if v\[\'in_stock\'\]\]\n    variants_descriptions \= \'\, \'\.join\(\n        \[str\(float\(v\[\'specifications\'\]\[\'GramEquivalent\'\]\[\'Value\'\]\)\) \+ \' g\' for v in variants_in_stock\]\)\n    return \'\[\{\}\] \- \{\} \(\{\}\)\, quantities available\: \{\}\'\.format\(in_stock_str\, product\[\'title\'\]\, product\[\'brand\'\]\,\n                                                             variants_descriptions\)\n\n\ndef format_variants_available\(product\)\:\n    variants_in_stock \= \[v for v in product\[\'variants\'\] if v\[\'in_stock\'\]\]\n    variants_descriptions \= \'\, \'\.join\(\n        \[str\(float\(v\[\'specifications\'\]\[\'GramEquivalent\'\]\[\'Value\'\]\)\) \+ \' g\' for v in variants_in_stock\]\)\n    return variants_descriptions\n\n\ndef format_brand_and_supplier\(product\)\:\n    variant_with_specifications \= \[v for v in product\[\'variants\'\] if \'specifications\' in v\]\[0\]\n    brand \= product\[\'brand\'\]\n    producerName \= variant_with_specifications\[\'specifications\'\]\[\'ProducerName\'\]\[\'Value\'\]\n    displayString \= brand\n    if producerName \!\= brand\:\n        displayString \+\= \' \(\' \+ producerName \+ \'\)\'\n\n    return displayString</find>
-      <find>category</find>
-      <find>mango</find>
+      <find>get_notification_rules</find>
     </findStrings>
     <replaceStrings>
       <replace />
     </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -209,56 +146,29 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/sqdc-api/sqdc/__init__.py" />
-        <option value="$PROJECT_DIR$/sqdc-cli/src/main.py" />
-        <option value="$PROJECT_DIR$/sqdc_cli/src/main.py" />
-        <option value="$PROJECT_DIR$/sqdc_cli/Pipfile" />
-        <option value="$PROJECT_DIR$/__init__.py" />
-        <option value="$PROJECT_DIR$/sqdc_cli/main.py" />
-        <option value="$PROJECT_DIR$/lib/exceptions.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.json" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.json" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_2.json" />
-        <option value="$PROJECT_DIR$/data/products.json" />
-        <option value="$PROJECT_DIR$/lib/Product.py" />
-        <option value="$PROJECT_DIR$/lib/product.py" />
-        <option value="$PROJECT_DIR$/lib/product_filters.py" />
-        <option value="$PROJECT_DIR$/lib/order.py" />
-        <option value="$PROJECT_DIR$/../../c#/MergeAndUploadVideos/MergeAndUpload/upload-script/main.py" />
-        <option value="$PROJECT_DIR$/lib/client.py" />
-        <option value="$PROJECT_DIR$/lib/formatter.py" />
-        <option value="$PROJECT_DIR$/lib/models/base_model.py" />
-        <option value="$PROJECT_DIR$/lib/models/product_history.py" />
+        <option value="$PROJECT_DIR$/lib/slackCommandParser.py" />
         <option value="$PROJECT_DIR$/lib/dbstore.py" />
-        <option value="$PROJECT_DIR$/lib/watcher.py" />
+        <option value="$PROJECT_DIR$/lib/slackWatchCommand.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/lib/formatter.py" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/lib/commandParser.py" />
+        <option value="$PROJECT_DIR$/lib/client.py" />
+        <option value="$PROJECT_DIR$/lib/slack_client.py" />
+        <option value="$PROJECT_DIR$/lib/SlackRequestHandler.py" />
+        <option value="$PROJECT_DIR$/lib/watcher.py" />
+        <option value="$PROJECT_DIR$/lib/server.py" />
+        <option value="$PROJECT_DIR$/lib/SqdcStore.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/run_watcher" />
+        <option value="$PROJECT_DIR$/run_watcher_default.sh" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="-1" />
-    <option name="width" value="1920" />
-    <option name="height" value="1053" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1910" />
+    <option name="height" value="1040" />
   </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State />
-          <State>
-            <id>Spelling</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>SpellCheckingInspection</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -274,11 +184,6 @@
             <path>
               <item name="sqdc" type="b2602c69:ProjectViewProjectNode" />
               <item name="sqdc" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sqdc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sqdc" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -289,16 +194,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../c#/MergeAndUploadVideos/MergeAndUpload/upload-script" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib" />
-      <recent name="$PROJECT_DIR$/sqdc_cli" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.documentation.PythonDocumentationConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -312,431 +208,209 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
-      <module name="sqdc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.local/share/virtualenvs/sqdc-5g51pztu/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="40f9eaed-ea23-4eff-b991-580b23aec80a" name="Default Changelist" comment="" />
-      <changelist id="56cc4f71-7da3-4f87-a48e-12b601f17326" name="tangerine" comment="" />
-      <created>1541221519515</created>
+      <changelist id="ceb23c94-8075-48a3-a235-c48e91bfcdc5" name="Default Changelist" comment="" />
+      <created>1558411454291</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1541221519515</updated>
+      <updated>1558411454291</updated>
     </task>
-    <task id="LOCAL-00001" summary="improve a lot !">
-      <created>1541373059675</created>
+    <task id="LOCAL-00001" summary="Implement Slack /watch command (list, add, delete watched keywords).">
+      <created>1558498949648</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1541373059675</updated>
+      <updated>1558498949648</updated>
     </task>
-    <task id="LOCAL-00002" summary="improve a lot ! Probably stable. Will save products file only after the slack message was successfully posted.">
-      <created>1542083869997</created>
+    <task id="LOCAL-00002" summary="Improve /watch command parsing, use custom slack_client.">
+      <created>1559706678697</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1542083869997</updated>
+      <updated>1559706678697</updated>
     </task>
-    <task id="LOCAL-00003" summary="WIP">
-      <created>1542151994356</created>
+    <task id="LOCAL-00003" summary="WIP / start replacing tornado with builtin HTTPServer">
+      <created>1559706826694</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1542151994356</updated>
+      <updated>1559706826694</updated>
     </task>
-    <task id="LOCAL-00004" summary="minor improvements and bug fixes">
-      <created>1542505801714</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1542505801714</updated>
-    </task>
-    <task id="LOCAL-00005" summary="begin implementing product history with sqlite (early WIP stage)">
-      <created>1542511856333</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1542511856333</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1910" height="1040" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16552451" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25119236" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32972974" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3437838" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32979852" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3297414" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.7569847" visible="true" weight="0.37823275" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49815497" weight="0.28556034" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.24301529" side_tool="true" visible="true" weight="0.37823275" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3297414" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32979852" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32979852" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32979852" />
+      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection>
-                  <UserGroup>
-                    <option name="users">
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </option>
-                  </UserGroup>
-                </collection>
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$/sqdc-api" />
-      <path value="$PROJECT_DIR$/sqdc_api" />
-    </ignored-roots>
-    <MESSAGE value="improve a lot !" />
-    <MESSAGE value="improve a lot ! Probably stable. Will save products file only after the slack message was successfully posted." />
-    <MESSAGE value="WIP" />
-    <MESSAGE value="minor improvements and bug fixes" />
-    <MESSAGE value="begin implementing product history with sqlite (early WIP stage)" />
-    <option name="LAST_COMMIT_MESSAGE" value="begin implementing product history with sqlite (early WIP stage)" />
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
+    <MESSAGE value="Implement Slack /watch command (list, add, delete watched keywords)." />
+    <MESSAGE value="Improve /watch command parsing, use custom slack_client." />
+    <MESSAGE value="WIP / start replacing tornado with builtin HTTPServer" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP / start replacing tornado with builtin HTTPServer" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sqdc-api2/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/sqdc_api/sqdc/client.py" />
-    <entry file="file://$PROJECT_DIR$/sqdc_api/sqdc/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/sqdc_cli/Pipfile" />
-    <entry file="file://$PROJECT_DIR$/__init__.py">
+    <entry file="file://$PROJECT_DIR$/lib/watcherOptions.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sqdc_cli/main.py" />
-    <entry file="file://$PROJECT_DIR$/../tangerine/src/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.sh" />
-    <entry file="file://$PROJECT_DIR$/../tangerine-api/tangerine/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tangerine-api/tangerine/exceptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tangerine-api/tangerine/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2295">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/VERSION">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/login.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file:///media/ig/sources/internal/python/sqdc/lib/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="124" column="35" lean-forward="true" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/ig/sources/internal/python/sqdc/lib/formatter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python3.6/logging/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/products.json" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/ig/sources/internal/python/sqdc/lib/dbstore.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/sqdc-5g51pztu/lib/python3.6/site-packages/requests/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="601" column="13" selection-start-line="601" selection-start-column="13" selection-end-line="601" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/1722341018/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="3605" column="8" selection-start-line="3605" selection-start-column="8" selection-end-line="3605" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../c#/MergeAndUploadVideos/MergeAndUpload/upload-script/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/product.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-          <folding>
-            <marker date="1541566767356" expanded="true" signature="14:19" ph="..." />
-            <marker date="1541566767356" expanded="true" signature="154:218" ph="..." />
-            <marker date="1541566767356" expanded="true" signature="447:540" ph="..." />
-            <marker date="1541566767356" expanded="true" signature="562:647" ph="..." />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/order.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-          <folding>
-            <marker date="1541636063464" expanded="true" signature="12:17" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/product_filters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <marker date="1541568154362" expanded="true" signature="55:60" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/products.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28818" selection-start-column="28813" selection-end-column="28818" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Pipfile">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/formatter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/base_model.py">
+    <entry file="file://$PROJECT_DIR$/lib/notificationRule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="15">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/product_history.py">
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/commandParser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/watcher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client.py">
+    <entry file="file://$PROJECT_DIR$/lib/slack_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="118" selection-start-line="118" selection-end-line="118" />
+        <state relative-caret-position="645">
+          <caret line="48" selection-start-line="48" selection-end-line="51" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/SlackRequestHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_watcher">
+    <entry file="file://$PROJECT_DIR$/lib/SqdcStore.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0x556d29b04cd0.4098">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/list_all">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/dbstore.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        <state relative-caret-position="540">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1560400175589" expanded="true" signature="2538:2655" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/exceptions.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="14" />
+        <state relative-caret-position="1080">
+          <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/watcher.py">
+    <entry file="file://$PROJECT_DIR$/run_watcher">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/slackWatchCommand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" selection-start-column="24" selection-end-column="24" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1542575714537" expanded="true" signature="340:345" ph="..." />
-            <marker date="1542575714537" expanded="true" signature="2435:2637" ph="..." />
+            <marker date="1558417588931" expanded="true" signature="24:29" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="41" column="63" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
+        <state relative-caret-position="975">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <entry file="file://$PROJECT_DIR$/lib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_watcher_default.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
