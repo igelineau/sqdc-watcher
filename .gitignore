@@ -1,3 +1,6 @@
+run_watcher
+run_watcher_test
+
 *.pyc
 __pycache__
 data
