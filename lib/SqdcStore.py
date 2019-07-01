@@ -109,6 +109,6 @@ class SqdcStore:
 
     def delete_trigger(self, username, keyword):
         with self.open_session() as session:
-            delete_query = Trigger.__table__.delete().where(and_(username == username, keyword == keyword))
-            result: ResultProxy = session.execute(delete_query)
-            return result.rowcount > 0
+            rowcount = session.query(Trigger).filter_by(username=username, keyword=keyword).delete()
+            session.commit()
+            return rowcount > 0
