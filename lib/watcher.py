@@ -10,6 +10,7 @@ from typing import List
 from lib.server import SlackEndpointServer
 from lib.slack_client import SlackClient
 from lib.stores.product import Product
+from lib.stores.product_history import ProductHistory
 from lib.watcherOptions import WatcherOptions
 from .client import SqdcClient
 from .formatter import SqdcFormatter
@@ -65,7 +66,8 @@ class SqdcWatcher(Thread):
             products_in_stock = ProductFilters.in_stock(products)
 
             prev_products = self.store.get_products()
-            new_products = [p for p in self.calculate_new_items(prev_products, products_in_stock)]
+            new_products = self.calculate_new_items(prev_products, products_in_stock)
+            vanished_products = self.calculate_new_items(products_in_stock, ProductFilters.in_stock(prev_products))
 
             log.info('List of all available products:')
             log.info(SqdcFormatter.format_products(products_in_stock, self.display_format))
@@ -76,10 +78,12 @@ class SqdcWatcher(Thread):
                 log.info('saving products')
                 self.store.save_products(products)
 
+                self.apply_notification_rules(new_products)
+                self.add_event_to_products(new_products, 'in_stock')
+                self.add_event_to_products(vanished_products, 'out_of_stock')
+
                 log.info('There are {} new products available since last scan :'.format(len(new_products)))
                 log.info(SqdcFormatter.build_products_table(new_products))
-
-                self.apply_notification_rules(new_products)
 
                 if len(prev_products) > 0:
                     log.info('Posting to Slack to announce the good news.')
@@ -128,3 +132,10 @@ class SqdcWatcher(Thread):
                 message += '------------'
                 self.slack_client.chat_send_message(message, username)
 
+    def add_event_to_products(self, products: List[Product], event_name: str):
+        entries = []
+        for product in products:
+            for variant in product.variants:
+                entries.append(ProductHistory(product_id=product.id, variant_id=variant.id, event=event_name))
+        if len(entries) > 0:
+            self.store.add_product_history_entries(entries)

@@ -1,17 +1,16 @@
 import datetime
-import json
 import logging
 import string
 from pathlib import Path
 from typing import List
 
 from sqlalchemy import create_engine, func
-from sqlalchemy.engine import Engine, ResultProxy
+from sqlalchemy.engine import Engine
 from sqlalchemy.orm import sessionmaker, Session
-from sqlalchemy.sql.elements import and_
 
 from lib.stores.base import Base
 from lib.stores.product import Product as Product
+from lib.stores.product_history import ProductHistory
 from lib.stores.product_variant import ProductVariant
 from lib.stores.sessionwrapper import SessionWrapper
 from lib.stores.trigger import Trigger
@@ -36,7 +35,6 @@ class SqdcStore:
             self.dir.mkdir()
 
         test_suffix = '-test' if is_test else ''
-        self.config_file = self.dir.joinpath('config.json')
         self.sqlite_db = self.dir.joinpath(f'data{test_suffix}.db')
         self.db_url = 'sqlite:///' + self.sqlite_db.as_posix()
 
@@ -57,6 +55,11 @@ class SqdcStore:
                 session.merge(p)
             session.commit()
 
+    def add_product_history_entries(self, entries: List[ProductHistory]):
+        with self.open_session() as session:
+            session.add_all(entries)
+            session.commit()
+
     def get_products(self):
         with self.open_session() as session:
             return session.query(Product).all()
@@ -75,13 +78,10 @@ class SqdcStore:
 
     def get_products_last_saved_timestamp(self):
         with self.open_session() as session:
-            return session.query(func.max(Product.last_updated)).scalar()
-
-    def get_config(self):
-        if not self.config_file.exists():
-            return None
-        else:
-            return json.loads(self.config_file.read_text())
+            result = session.query(func.max(Product.last_updated)).scalar()
+            if not result:
+                result = datetime.datetime.now()
+            return result
 
     # Returns True if the keyword was added, and False if the keyword was not added because it already exists.
     def add_watch_keyword(self, username, keyword):

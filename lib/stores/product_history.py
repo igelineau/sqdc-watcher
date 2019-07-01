@@ -5,7 +5,7 @@ from lib.stores.base import Base
 
 
 class ProductHistory(Base):
-    __tablename__ = 'ProductHistory'
+    __tablename__ = 'product_history'
 
     id = Column('id', Integer, primary_key=True, autoincrement=True)
     product_id = Column('product_id', None, ForeignKey('products.id'), nullable=False)
