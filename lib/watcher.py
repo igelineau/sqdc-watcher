@@ -1,6 +1,8 @@
 import logging
 import datetime
-from threading import Thread
+import signal
+import sys
+from threading import Thread, Event
 import traceback
 
 from typing import List
@@ -16,9 +18,11 @@ from .product_filters import ProductFilters
 
 log = logging.getLogger(__name__)
 
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+
 
 class SqdcWatcher(Thread):
-    def __init__(self, event, options: WatcherOptions = WatcherOptions.default()):
+    def __init__(self, event: Event, options: WatcherOptions = WatcherOptions.default()):
         Thread.__init__(self)
         self._stopped = event
         self.store = SqdcStore(options.is_test_mode)
@@ -33,11 +37,10 @@ class SqdcWatcher(Thread):
         self.slack_server = SlackEndpointServer(options.slack_port, self, self.store)
 
     def run(self):
+        self.store.initialize()
         log.info('INITIALIZED - interval = {}'.format(self.interval))
         last_saved_products_rel = datetime.datetime.now() - self.store.get_products_last_saved_timestamp()
-        print('Last successful execution : {}m ago'.format(last_saved_products_rel))
-
-        self.store.initialize()
+        print('Products were last updated {}m ago'.format(last_saved_products_rel))
 
         notification_rules = self.store.get_all_notification_rules()
         if len(notification_rules) > 0:
@@ -52,8 +55,9 @@ class SqdcWatcher(Thread):
             self.execute_scan()
             log.info('TASK EXECUTED. Waiting {:.2g} minutes until next execution.'.format(self.interval / 60))
             is_stopping = self._stopped.wait(self.interval)
-
-        log.info('STOPPED')
+            if is_stopping:
+                print('Watcher daemon - shutting down...')
+                self.slack_server.stop()
 
     def execute_scan(self):
         try:
@@ -82,6 +86,8 @@ class SqdcWatcher(Thread):
                     self.post_new_products_to_slack(new_products)
                 else:
                     log.info('First run - not posting new products to Slack.')
+        except KeyboardInterrupt:
+            log.info('CTRL+C pressed. exiting program.')
         except:
             traceback.format_exc()
             log.error('watcher job execution encountered an error:')

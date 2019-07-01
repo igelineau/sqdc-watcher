@@ -4,24 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/lib/stores/product_variant.py" line="15" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ceb23c94-8075-48a3-a235-c48e91bfcdc5" name="Default Changelist" comment="WIP / start replacing tornado with builtin HTTPServer">
-      <change afterPath="$PROJECT_DIR$/lib/stores/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stores/product.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stores/product_history.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stores/product_variant.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stores/products_store.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stores/schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stores/sessionwrapper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stores/trigger.py" afterDir="false" />
+    <list default="true" id="ceb23c94-8075-48a3-a235-c48e91bfcdc5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SlackRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/SlackRequestHandler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/SqdcStore.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/SqdcStore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/formatter.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/formatter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/product.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/product_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/product_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/watcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/watcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -55,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/SqdcStore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
-              <caret line="145" column="26" selection-start-line="145" selection-start-column="26" selection-end-line="145" selection-end-column="26" />
+            <state relative-caret-position="930">
+              <caret line="77" column="73" selection-start-line="77" selection-start-column="73" selection-end-line="77" selection-end-column="73" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -64,13 +50,37 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/watcher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
+            <state relative-caret-position="414">
+              <caret line="58" column="56" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/server.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,15 +123,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/VERSION">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+            <state relative-caret-position="414">
+              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -130,13 +135,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/product_filters.py">
+        <entry file="file://$PROJECT_DIR$/lib/watcherOptions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="210">
+              <caret line="16" selection-start-line="3" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -149,15 +151,6 @@
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/SlackRequestHandler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="45" column="40" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -175,6 +168,9 @@
     <findStrings>
       <find>get_notification_rules</find>
       <find>r</find>
+      <find>_add_or_update_variant</find>
+      <find>_query_product_variant</find>
+      <find>get_variant</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -198,7 +194,6 @@
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/lib/commandParser.py" />
         <option value="$PROJECT_DIR$/lib/slack_client.py" />
-        <option value="$PROJECT_DIR$/lib/server.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/run_watcher" />
         <option value="$PROJECT_DIR$/run_watcher_default.sh" />
@@ -210,7 +205,6 @@
         <option value="$PROJECT_DIR$/lib/stores/schema.py" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/Pipfile" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_3.json" />
         <option value="$PROJECT_DIR$/lib/stores/product_history.py" />
         <option value="$PROJECT_DIR$/lib/stores/products.py" />
@@ -226,9 +220,12 @@
         <option value="$PROJECT_DIR$/lib/stores/product.py" />
         <option value="$PROJECT_DIR$/lib/stores/product_variant.py" />
         <option value="$PROJECT_DIR$/lib/client.py" />
-        <option value="$PROJECT_DIR$/lib/SqdcStore.py" />
         <option value="$PROJECT_DIR$/lib/formatter.py" />
+        <option value="$PROJECT_DIR$/lib/SqdcStore.py" />
+        <option value="$PROJECT_DIR$/lib/signal_handler.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/lib/watcher.py" />
+        <option value="$PROJECT_DIR$/lib/server.py" />
       </list>
     </option>
   </component>
@@ -289,7 +286,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../tangerine" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -349,7 +346,21 @@
       <option name="project" value="LOCAL" />
       <updated>1560551756125</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implement sqlalchemy ORM instead of regular SQL commands. optimize requests to SQDC by caching specifications.">
+      <created>1562014232755</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1562014232755</updated>
+    </task>
+    <task id="LOCAL-00006" summary="re-enable slack posts, do not post if first run (empty db)">
+      <created>1562017672255</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1562017672255</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -363,8 +374,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15287296" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15287296" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -374,7 +386,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32944915" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.24894068" />
+      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.24894068" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32944915" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32979852" />
@@ -410,7 +422,9 @@
     <MESSAGE value="Improve /watch command parsing, use custom slack_client." />
     <MESSAGE value="WIP / start replacing tornado with builtin HTTPServer" />
     <MESSAGE value="add template run script" />
-    <option name="LAST_COMMIT_MESSAGE" value="add template run script" />
+    <MESSAGE value="implement sqlalchemy ORM instead of regular SQL commands. optimize requests to SQDC by caching specifications." />
+    <MESSAGE value="re-enable slack posts, do not post if first run (empty db)" />
+    <option name="LAST_COMMIT_MESSAGE" value="re-enable slack posts, do not post if first run (empty db)" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Pipfile">
@@ -485,24 +499,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/watcherOptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" selection-start-line="3" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="28" column="24" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -549,16 +549,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/stores/sessionwrapper.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/VERSION">
       <provider selected="true" editor-type-id="text-editor" />
@@ -624,16 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/SqdcStore.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="145" column="26" selection-start-line="145" selection-start-column="26" selection-end-line="145" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/formatter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -646,20 +626,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+        <state relative-caret-position="414">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/SqdcStore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="77" column="73" selection-start-line="77" selection-start-column="73" selection-end-line="77" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/signal_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="6" />
+          <folding>
+            <element signature="e#22#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/watcherOptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" selection-start-line="3" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/watcher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
+        <state relative-caret-position="414">
+          <caret line="58" column="56" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>

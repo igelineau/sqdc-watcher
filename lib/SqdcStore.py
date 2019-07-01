@@ -5,7 +5,7 @@ import string
 from pathlib import Path
 from typing import List
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from sqlalchemy.engine import Engine, ResultProxy
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.sql.elements import and_
@@ -38,62 +38,28 @@ class SqdcStore:
         test_suffix = '-test' if is_test else ''
         self.config_file = self.dir.joinpath('config.json')
         self.sqlite_db = self.dir.joinpath(f'data{test_suffix}.db')
+        self.db_url = 'sqlite:///' + self.sqlite_db.as_posix()
 
     def open_session(self) -> SessionWrapper:
         return SessionWrapper(self.session_maker())
 
     def initialize(self):
-        db_url = 'sqlite:///' + self.sqlite_db.as_posix()
-        print('connecting to database: ' + db_url)
-        self.engine = create_engine(db_url)
-        self.session_maker = sessionmaker(bind=self.engine)
 
-        with self.open_session() as session:
-            # session.execute('DROP TABLE IF EXISTS products')
-            # session.execute('DROP TABLE IF EXISTS product_variants')
-            session.commit()
+        print('connecting to database: ' + self.db_url)
+        self.engine = create_engine(self.db_url)
+        self.session_maker = sessionmaker(bind=self.engine)
 
         Base.metadata.create_all(self.engine)
 
     def save_products(self, products: List[Product]):
         with self.open_session() as session:
             for p in products:
-                self._add_or_update_product(session, p)
-                session.commit()
-
-                # for variant in p.get_variants_in_stock():
-                #     self._add_or_update_variant(session, p.id, variant.id)
-                #     session.commit()
-
-    @staticmethod
-    def _add_or_update_product(session: Session, product: Product):
-        session.merge(product)
-        session.commit()
+                session.merge(p)
+            session.commit()
 
     def get_products(self):
         with self.open_session() as session:
             return session.query(Product).all()
-
-    @staticmethod
-    def _query_product_variant(session: Session, product_id: string, variant_id: string):
-        return session\
-            .query(ProductVariant)\
-            .filter(and_(ProductVariant.product_id == product_id, ProductVariant.id == variant_id))
-
-    def _add_or_update_variant(self, session: Session, variant: ProductVariant):
-        existing_entry = self._get_variant(variant.product_id, variant.id, session)
-        if existing_entry is None:
-            session.add(variant)
-            existing_entry = variant
-        return existing_entry
-
-    def save_variant_specifications(self, product_id, variant_id, specifications: object):
-        with self.open_session() as session:
-            variant = self._get_variant(product_id, variant_id, session)
-            if variant is None:
-                variant = ProductVariant(id=variant_id, product_id=product_id)
-            variant.specifications = json.dumps(specifications)
-            session.commit()
 
     def get_variant(self, product_id: string, variant_id: string) -> ProductVariant:
         with self.open_session() as session:
@@ -108,7 +74,8 @@ class SqdcStore:
             return session.query(ProductVariant).filter(ProductVariant.product_id == product_id).all()
 
     def get_products_last_saved_timestamp(self):
-        return datetime.datetime.min
+        with self.open_session() as session:
+            return session.query(func.max(Product.last_updated)).scalar()
 
     def get_config(self):
         if not self.config_file.exists():

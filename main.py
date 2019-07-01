@@ -1,5 +1,7 @@
 import argparse
 import logging
+import signal
+import sys
 from threading import Event
 
 from lib.formatter import SqdcFormatter
@@ -62,7 +64,7 @@ logging.basicConfig(level=log_level_table[args.log_level.lower()],
                     format='%(levelname)s' + log_test_indicator + ':%(name)s: %(asctime)s - %(message)s')
 
 if args.watch:
-    stop_event = Event()
+
     options = WatcherOptions.default()
     options.slack_post_url = args.slack_post_url
     options.is_test_mode = args.test
@@ -71,11 +73,24 @@ if args.watch:
     options.interval = args.watch_interval
     options.slack_port = int(args.slack_port)
 
+    stop_event = Event()
     watcher = SqdcWatcher(stop_event, options)
     watcher.daemon = True
     watcher.start()
+    print('Watcher daemon started')
 else:
     client = SqdcClient()
     products = client.get_products()
     products_in_stock = [p for p in products if p.is_in_stock()]
     print(SqdcFormatter.format_products(products_in_stock, args.display_format))
+
+
+def on_control_c(signal, frame):
+    print('CTRL+C pressed, exiting now.')
+    if watcher:
+        stop_event.set()
+
+
+signal.signal(signal.SIGINT, on_control_c)
+
+
