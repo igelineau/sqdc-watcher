@@ -72,7 +72,8 @@ if args.watch:
     options.slack_port = int(args.slack_port)
 
     watcher = SqdcWatcher(stop_event, options)
-    watcher.run()
+    watcher.daemon = True
+    watcher.start()
 else:
     client = SqdcClient()
     products = client.get_products()

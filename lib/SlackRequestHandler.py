@@ -43,7 +43,7 @@ class SlackRequestHandler(tornado.web.RequestHandler):
 
         elif command.verb == 'delete':
             keyword = command.args[0]
-            was_deleted = self.store.delete_watch_keyword(username, keyword)
+            was_deleted = self.store.delete_trigger(username, keyword)
             if was_deleted:
                 self.write('Keyword *{}* was removed.'.format(keyword))
             else:
