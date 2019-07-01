@@ -77,9 +77,11 @@ class SqdcWatcher(Thread):
 
                 self.apply_notification_rules(new_products)
 
-                # log.info('Posting to Slack to announce the good news.')
-                # self.post_new_products_to_slack(new_products)
-
+                if len(prev_products) > 0:
+                    log.info('Posting to Slack to announce the good news.')
+                    self.post_new_products_to_slack(new_products)
+                else:
+                    log.info('First run - not posting new products to Slack.')
         except:
             traceback.format_exc()
             log.error('watcher job execution encountered an error:')
