@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String
 
-from lib.stores.base import Base
+from sqdc.dataobjects.base import Base
 
 
 class Trigger(Base):

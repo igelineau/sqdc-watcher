@@ -3,8 +3,8 @@ from typing import List
 
 from tabulate import tabulate
 
-from lib.stores.product import Product
-from lib.stores.product_variant import ProductVariant
+from sqdc.dataobjects.product import Product
+from sqdc.dataobjects.product_variant import ProductVariant
 
 
 class SqdcFormatter:

@@ -1,17 +1,16 @@
 import logging
 import datetime
-import signal
-import sys
 from threading import Thread, Event
 import traceback
 
 from typing import List
 
-from lib.server import SlackEndpointServer
-from lib.slack_client import SlackClient
-from lib.stores.product import Product
-from lib.stores.product_history import ProductHistory
-from lib.watcherOptions import WatcherOptions
+from sqdc.dataobjects.productevent import ProductEvent
+from sqdc.server import SlackEndpointServer
+from sqdc.slack_client import SlackClient
+from sqdc.dataobjects.product import Product
+from sqdc.dataobjects.product_history import ProductHistory
+from sqdc.watcherOptions import WatcherOptions
 from .client import SqdcClient
 from .formatter import SqdcFormatter
 from .SqdcStore import SqdcStore
@@ -39,10 +38,29 @@ class SqdcWatcher(Thread):
 
     def run(self):
         self.store.initialize()
+        self.log_initialized_event()
+        self.log_notification_rules()
+
+        self.main_loop()
+        self.shutdown()
+
+    def main_loop(self):
+        is_stopping = False
+        while not is_stopping:
+            self.execute_scan()
+            log.info('TASK EXECUTED. Waiting {:.2g} minutes until next execution.'.format(self.interval / 60))
+            is_stopping = self._stopped.wait(self.interval)
+
+    def shutdown(self):
+        print('Watcher daemon - shutting down...')
+        self.slack_server.stop()
+
+    def log_initialized_event(self):
         log.info('INITIALIZED - interval = {}'.format(self.interval))
         last_saved_products_rel = datetime.datetime.now() - self.store.get_products_last_saved_timestamp()
         print('Products were last updated {}m ago'.format(last_saved_products_rel))
 
+    def log_notification_rules(self):
         notification_rules = self.store.get_all_notification_rules()
         if len(notification_rules) > 0:
             log.info('loaded {} notification rules:'.format(len(notification_rules)))
@@ -50,15 +68,6 @@ class SqdcWatcher(Thread):
                 log.info('To @{}:'.format(username))
                 for rule in rules:
                     log.info('  {}'.format(rule.keyword))
-
-        is_stopping = False
-        while not is_stopping:
-            self.execute_scan()
-            log.info('TASK EXECUTED. Waiting {:.2g} minutes until next execution.'.format(self.interval / 60))
-            is_stopping = self._stopped.wait(self.interval)
-            if is_stopping:
-                print('Watcher daemon - shutting down...')
-                self.slack_server.stop()
 
     def execute_scan(self):
         try:
@@ -79,8 +88,8 @@ class SqdcWatcher(Thread):
                 self.store.save_products(products)
 
                 self.apply_notification_rules(new_products)
-                self.add_event_to_products(new_products, 'in_stock')
-                self.add_event_to_products(vanished_products, 'out_of_stock')
+                self.add_event_to_products(new_products, ProductEvent.IN_STOCK)
+                self.add_event_to_products(vanished_products, ProductEvent.NOT_IN_STOCK)
 
                 log.info('There are {} new products available since last scan :'.format(len(new_products)))
                 log.info(SqdcFormatter.build_products_table(new_products))
@@ -132,10 +141,10 @@ class SqdcWatcher(Thread):
                 message += '------------'
                 self.slack_client.chat_send_message(message, username)
 
-    def add_event_to_products(self, products: List[Product], event_name: str):
+    def add_event_to_products(self, products: List[Product], event: ProductEvent):
         entries = []
         for product in products:
             for variant in product.variants:
-                entries.append(ProductHistory(product_id=product.id, variant_id=variant.id, event=event_name))
+                entries.append(ProductHistory(product_id=product.id, variant_id=variant.id, event=event.name.lower()))
         if len(entries) > 0:
             self.store.add_product_history_entries(entries)

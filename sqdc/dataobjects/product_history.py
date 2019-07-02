@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import Integer, Column, ForeignKey, String, DateTime
 
-from lib.stores.base import Base
+from sqdc.dataobjects.base import Base
 
 
 class ProductHistory(Base):

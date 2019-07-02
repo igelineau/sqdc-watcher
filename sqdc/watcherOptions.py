@@ -1,6 +1,6 @@
 from typing import List
 
-from lib.notificationRule import NotificationRule
+from sqdc.notificationRule import NotificationRule
 
 
 class WatcherOptions:

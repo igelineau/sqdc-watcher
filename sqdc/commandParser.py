@@ -1,4 +1,4 @@
-from lib.slackWatchCommand import SlackWatchCommand
+from sqdc.slackWatchCommand import SlackWatchCommand
 import re
 
 

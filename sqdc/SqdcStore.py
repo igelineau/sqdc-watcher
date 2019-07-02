@@ -8,12 +8,12 @@ from sqlalchemy import create_engine, func
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import sessionmaker, Session
 
-from lib.stores.base import Base
-from lib.stores.product import Product as Product
-from lib.stores.product_history import ProductHistory
-from lib.stores.product_variant import ProductVariant
-from lib.stores.sessionwrapper import SessionWrapper
-from lib.stores.trigger import Trigger
+from sqdc.dataobjects.base import Base
+from sqdc.dataobjects.product import Product as Product
+from sqdc.dataobjects.product_history import ProductHistory
+from sqdc.dataobjects.product_variant import ProductVariant
+from sqdc.dataobjects.sessionwrapper import SessionWrapper
+from sqdc.dataobjects.trigger import Trigger
 
 log = logging.getLogger(__name__)
 

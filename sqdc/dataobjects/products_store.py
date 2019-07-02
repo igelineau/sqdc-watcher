@@ -1,4 +1,4 @@
-from lib.stores.schema import products, metadata, product_history
+from sqdc.dataobjects.schema import products, metadata, product_history
 
 
 class ProductsStore:

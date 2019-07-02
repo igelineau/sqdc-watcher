@@ -2,8 +2,8 @@ from datetime import datetime
 from sqlalchemy import Column, String, DateTime, Boolean
 from sqlalchemy.orm import relationship
 
-from lib.stores.base import Base
-from lib.stores.product_variant import ProductVariant
+from sqdc.dataobjects.base import Base
+from sqdc.dataobjects.product_variant import ProductVariant
 
 
 class Product(Base):
@@ -37,3 +37,9 @@ class Product(Base):
 
     def get_property(self, name) -> str:
         return self.data[name]
+
+    def __repr__(self):
+        return f'Product(id={self.id}, title={self.title}, in_stock={self.in_stock}, {self.variants} variants)'
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

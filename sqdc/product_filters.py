@@ -1,6 +1,6 @@
 from typing import List
 
-from lib.stores.product import Product
+from sqdc.dataobjects.product import Product
 
 
 class ProductFilters:
