@@ -2,8 +2,8 @@ from urllib.parse import parse_qs
 
 import tornado.web
 
-from lib.SqdcStore import SqdcStore
-from lib.commandParser import CommandParser
+from sqdc.SqdcStore import SqdcStore
+from sqdc.commandParser import CommandParser
 
 
 class SlackRequestHandler(tornado.web.RequestHandler):

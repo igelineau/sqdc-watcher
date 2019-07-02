@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import Column, String, DateTime, Numeric, Boolean, ForeignKey, JSON
 
-from lib.stores.base import Base
+from sqdc.dataobjects.base import Base
 
 
 class ProductVariant(Base):
@@ -18,4 +18,4 @@ class ProductVariant(Base):
     price_per_gram = Column(Numeric)
 
     def __repr__(self):
-        return f'variant[id={self.id}, product_id={self.product_id}, in_stock={self.in_stock}, specifications={self.specifications}'
+        return f'ProductVariant(id={self.id}, product_id={self.product_id}, in_stock={self.in_stock}, specifications={self.specifications})'

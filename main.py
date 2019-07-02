@@ -4,10 +4,10 @@ import signal
 import sys
 from threading import Event
 
-from lib.formatter import SqdcFormatter
-from lib.client import SqdcClient
-from lib.watcher import SqdcWatcher
-from lib.watcherOptions import WatcherOptions
+from sqdc.formatter import SqdcFormatter
+from sqdc.client import SqdcClient
+from sqdc.watcher import SqdcWatcher
+from sqdc.watcherOptions import WatcherOptions
 
 
 def parse_args():

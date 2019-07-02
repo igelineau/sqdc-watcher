@@ -3,8 +3,8 @@ import threading
 import tornado
 from tornado.ioloop import IOLoop
 
-from lib import SqdcStore
-from lib.SlackRequestHandler import SlackRequestHandler
+from sqdc import SqdcStore
+from sqdc.SlackRequestHandler import SlackRequestHandler
 
 
 class SlackEndpointServer:

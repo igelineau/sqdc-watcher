@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/lib/stores/product_variant.py" line="15" />
+  <component name="AutoTestManager">
+    <enabled-run-configurations>
+      <run-configuration type="tests" name="Unittests for sqdc.logic.test.product_calculator_tests.ProductCalculatorTests.test_product_became_in_stock" />
+    </enabled-run-configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ceb23c94-8075-48a3-a235-c48e91bfcdc5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/sqdc/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/dataobjects/productevent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/dto/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/dto/history_time_accumulator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/dto/product_stock_differences.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/logic/product_calculator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/logic/product_history_analyzer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/logic/test/product_calculator_tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/logic/test/product_history_analyzer_tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sqdc/logic/test/test_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SqdcStore.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/SqdcStore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/stores/product_history.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/stores/product_history.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/watcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/watcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/.idea/sqdc-cli.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/.idea/sqdc-cli.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/SlackRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/SlackRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/SqdcStore.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/SqdcStore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commandParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/commandParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/formatter.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/formatter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/notificationRule.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/notificationRule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/product_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/product_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/slackWatchCommand.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/slackWatchCommand.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/slack_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/slack_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stores/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/dataobjects/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stores/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/dataobjects/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stores/product_history.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/dataobjects/product_history.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stores/product_variant.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/dataobjects/product_variant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stores/products_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/dataobjects/products_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stores/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/dataobjects/schema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stores/sessionwrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/dataobjects/sessionwrapper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stores/trigger.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/dataobjects/trigger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/watcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/watcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/watcherOptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqdc/watcherOptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,44 +52,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.json">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="360">
-                    <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/SqdcStore.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/watcher.py">
+        <entry file="file://$PROJECT_DIR$/sqdc/watcher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="42" column="85" selection-start-line="42" selection-start-column="85" selection-end-line="42" selection-end-column="85" />
+            <state relative-caret-position="290">
+              <caret line="148" column="28" lean-forward="true" selection-start-line="148" selection-start-column="28" selection-end-line="148" selection-end-column="28" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -62,22 +67,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/server.py">
+        <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/product.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
+            <state relative-caret-position="350">
+              <caret line="44" column="78" selection-start-line="44" selection-start-column="78" selection-end-line="44" selection-end-column="78" />
               <folding>
-                <element signature="e#0#16#0" expanded="true" />
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
+        <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="30">
+              <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sqdc/logic/test/product_calculator_tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -86,10 +100,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/stores/product_history.py">
+        <entry file="file://$PROJECT_DIR$/sqdc/logic/test/test_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+            <state relative-caret-position="360">
+              <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -97,49 +111,44 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/stores/product_variant.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sqdc/logic/product_history_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="94" selection-start-line="20" selection-start-column="94" selection-end-line="20" selection-end-column="94" />
+            <state relative-caret-position="320">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#0#23#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/commandParser.py">
+        <entry file="file://$PROJECT_DIR$/sqdc/logic/test/product_history_analyzer_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/exceptions.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/formatter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="320">
+              <caret line="24" column="49" lean-forward="true" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/notificationRule.py">
+        <entry file="file://$PROJECT_DIR$/sqdc/dto/product_stock_differences.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state>
+              <caret column="28" selection-start-column="28" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/productevent.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -178,13 +187,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/slackCommandParser.py" />
-        <option value="$PROJECT_DIR$/lib/dbstore.py" />
-        <option value="$PROJECT_DIR$/lib/slackWatchCommand.py" />
-        <option value="$PROJECT_DIR$/__init__.py" />
-        <option value="$PROJECT_DIR$/lib/commandParser.py" />
-        <option value="$PROJECT_DIR$/lib/slack_client.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/run_watcher" />
         <option value="$PROJECT_DIR$/run_watcher_default.sh" />
         <option value="$PROJECT_DIR$/lib/tasbles.py" />
@@ -214,8 +216,28 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/lib/server.py" />
         <option value="$PROJECT_DIR$/lib/stores/product_history.py" />
-        <option value="$PROJECT_DIR$/lib/watcher.py" />
         <option value="$PROJECT_DIR$/lib/SqdcStore.py" />
+        <option value="$PROJECT_DIR$/lib/watcher.py" />
+        <option value="$PROJECT_DIR$/lib/product_calculator.py" />
+        <option value="$PROJECT_DIR$/lib/dto/product_calculator.py" />
+        <option value="$PROJECT_DIR$/lib/dataobjects/product_variant.py" />
+        <option value="$PROJECT_DIR$/lib/dataobjects/product.py" />
+        <option value="$PROJECT_DIR$/lib/logic/product_calculator.py" />
+        <option value="$PROJECT_DIR$/lib/logic/history_analyzer.py" />
+        <option value="$PROJECT_DIR$/lib/logic/test/object_factory.py" />
+        <option value="$PROJECT_DIR$/lib/logic/test/history_analyzer_tests.py" />
+        <option value="$PROJECT_DIR$/lib/logic/test/test_base.py" />
+        <option value="$PROJECT_DIR$/lib/logic/test/product_calculator_tests.py" />
+        <option value="$PROJECT_DIR$/sqdc/logic/test/product_calculator_tests.py" />
+        <option value="$PROJECT_DIR$/sqdc/dataobjects/base.py" />
+        <option value="$PROJECT_DIR$/sqdc/dataobjects/product.py" />
+        <option value="$PROJECT_DIR$/sqdc/logic/test/test_base.py" />
+        <option value="$PROJECT_DIR$/sqdc/dataobjects/events.py" />
+        <option value="$PROJECT_DIR$/sqdc/watcher.py" />
+        <option value="$PROJECT_DIR$/sqdc/dto/history_time_accumulator.py" />
+        <option value="$PROJECT_DIR$/sqdc/logic/history_analyzer.py" />
+        <option value="$PROJECT_DIR$/sqdc/logic/test/history_analyzer_tests.py" />
+        <option value="$PROJECT_DIR$/sqdc/logic/test/product_history_analyzer_tests.py" />
       </list>
     </option>
   </component>
@@ -232,28 +254,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="stores" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -270,6 +270,47 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="sqdc" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="sqdc" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="dataobjects" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="sqdc" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="dto" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="sqdc" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="logic" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="sqdc" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="sqdc" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="logic" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -280,6 +321,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/logic" />
       <recent name="$PROJECT_DIR$/lib/stores" />
       <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/lib/schema" />
@@ -296,6 +338,57 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager" selected="Python tests.Unittests for sqdc.logic.test.product_history_analyzer_tests.HistoryAnalyzerTests">
+    <configuration name="Unittests for sqdc.logic.test.product_calculator_tests.ProductCalculatorTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="sqdc" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sqdc/logic/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;sqdc.logic.test.product_calculator_tests.ProductCalculatorTests&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for sqdc.logic.test.product_calculator_tests.ProductCalculatorTests.test_product_became_in_stock" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="sqdc" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sqdc/logic/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;sqdc.logic.test.product_calculator_tests.ProductCalculatorTests.test_product_became_in_stock&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for sqdc.logic.test.product_history_analyzer_tests.HistoryAnalyzerTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="sqdc" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sqdc/logic/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;sqdc.logic.test.product_history_analyzer_tests.HistoryAnalyzerTests&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Unittests for sqdc.logic.test.product_history_analyzer_tests.HistoryAnalyzerTests" />
+        <item itemvalue="Python tests.Unittests for sqdc.logic.test.product_calculator_tests.ProductCalculatorTests" />
+        <item itemvalue="Python tests.Unittests for sqdc.logic.test.product_calculator_tests.ProductCalculatorTests.test_product_became_in_stock" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -367,6 +460,38 @@
     <option name="localTasksCounter" value="9" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_for_sqdc_logic_test_product_calculator_tests_ProductCalculatorTests - 2019.07.01 at 23h 27m 32s.xml">
+      <configuration name="Unittests for sqdc.logic.test.product_calculator_tests.ProductCalculatorTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_sqdc_logic_test_product_calculator_tests_ProductCalculatorTests - 2019.07.01 at 23h 30m 12s.xml">
+      <configuration name="Unittests for sqdc.logic.test.product_calculator_tests.ProductCalculatorTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_sqdc_logic_test_product_calculator_tests_ProductCalculatorTests - 2019.07.01 at 23h 33m 17s.xml">
+      <configuration name="Unittests for sqdc.logic.test.product_calculator_tests.ProductCalculatorTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_history_analyzer_tests_HistoryAnalyzerTests - 2019.07.01 at 23h 33m 42s.xml">
+      <configuration name="Unittests for history_analyzer_tests.HistoryAnalyzerTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_history_analyzer_tests_HistoryAnalyzerTests - 2019.07.01 at 23h 41m 38s.xml">
+      <configuration name="Unittests for history_analyzer_tests.HistoryAnalyzerTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_history_analyzer_tests_HistoryAnalyzerTests - 2019.07.02 at 00h 21m 48s.xml">
+      <configuration name="Unittests for history_analyzer_tests.HistoryAnalyzerTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_sqdc_logic_test_product_history_analyzer_tests_HistoryAnalyzerTests - 2019.07.02 at 00h 45m 03s.xml">
+      <configuration name="Unittests for sqdc.logic.test.product_history_analyzer_tests.HistoryAnalyzerTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_sqdc_logic_test_product_history_analyzer_tests_HistoryAnalyzerTests - 2019.07.02 at 00h 46m 21s.xml">
+      <configuration name="Unittests for sqdc.logic.test.product_history_analyzer_tests.HistoryAnalyzerTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_sqdc_logic_test_product_history_analyzer_tests_HistoryAnalyzerTests - 2019.07.02 at 00h 46m 48s.xml">
+      <configuration name="Unittests for sqdc.logic.test.product_history_analyzer_tests.HistoryAnalyzerTests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_sqdc_logic_test_product_history_analyzer_tests_HistoryAnalyzerTests - 2019.07.02 at 00h 51m 25s.xml">
+      <configuration name="Unittests for sqdc.logic.test.product_history_analyzer_tests.HistoryAnalyzerTests" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -385,12 +510,12 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32944915" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5127119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32944915" />
-      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.24894068" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.24894068" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32944915" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32979852" />
@@ -439,8 +564,8 @@
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/lib/slack_client.py">
+    <entry file="file://$PROJECT_DIR$/sqdc/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/sqdc/slack_client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
@@ -471,33 +596,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/products_store.py">
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/products_store.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/base_store.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/schema.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/stores/base_store.py" />
     <entry file="file://$USER_HOME$/.local/share/virtualenvs/sqdc-5g51pztu/lib/python3.6/site-packages/sqlalchemy/orm/session.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -505,31 +611,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/slackWatchCommand.py">
+    <entry file="file://$PROJECT_DIR$/sqdc/slackWatchCommand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="24" selection-start-column="24" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding>
-            <element signature="e#1#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/trigger.py">
+    <entry file="file://$PROJECT_DIR$/lib/stores/test.py" />
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/trigger.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
@@ -539,34 +629,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/sessionwrapper.py">
+    <entry file="file://$PROJECT_DIR$/sqdc/VERSION">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/VERSION">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/product.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="66" lean-forward="true" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/SlackRequestHandler.py">
+    <entry file="file://$PROJECT_DIR$/lib/product.py" />
+    <entry file="file://$PROJECT_DIR$/sqdc/SlackRequestHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="45" column="40" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/sessionwrapper.py">
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/sessionwrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/product_filters.py">
+    <entry file="file://$PROJECT_DIR$/sqdc/product_filters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
@@ -576,37 +657,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/product.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/signal_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="6" />
-          <folding>
-            <element signature="e#22#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/watcherOptions.py">
+    <entry file="file://$PROJECT_DIR$/lib/signal_handler.py" />
+    <entry file="file://$PROJECT_DIR$/sqdc/watcherOptions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="16" selection-start-line="3" selection-end-line="16" />
@@ -616,67 +668,16 @@
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/order.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/login.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/commandParser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/exceptions.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/formatter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/notificationRule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/product_variant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="94" selection-start-line="20" selection-start-column="94" selection-end-line="20" selection-end-column="94" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stores/product_history.py">
+    <entry file="file://$PROJECT_DIR$/lib/order.py" />
+    <entry file="file://$PROJECT_DIR$/lib/login.py" />
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/product_history.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
@@ -686,22 +687,205 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/watcher.py">
+    <entry file="file://$PROJECT_DIR$/sqdc/SqdcStore.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="42" column="85" selection-start-line="42" selection-start-column="85" selection-end-line="42" selection-end-column="85" />
+        <state relative-caret-position="1485">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/schema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/commandParser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/formatter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/notificationRule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/ig/sources/internal/python/sqdc/lib/logic/test/product_calculator_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/product_variant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="139" selection-start-line="20" selection-start-column="139" selection-end-line="20" selection-end-column="139" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/logic/test/object_factory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/logic/product_calculator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="14" column="76" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/logic/test/product_calculator_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/product.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="44" column="78" selection-start-line="44" selection-start-column="78" selection-end-line="44" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/logic/test/test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.6/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="486" column="6" selection-start-line="486" selection-start-column="6" selection-end-line="486" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/dataobjects/productevent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/watcher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="148" column="28" lean-forward="true" selection-start-line="148" selection-start-column="28" selection-end-line="148" selection-end-column="28" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/SqdcStore.py">
+    <entry file="file://$PROJECT_DIR$/sqdc/dto/history_time_accumulator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
+        <state relative-caret-position="180">
+          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/dto/product_stock_differences.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/logic/test/product_history_analyzer_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="24" column="49" lean-forward="true" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqdc/logic/product_history_analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>

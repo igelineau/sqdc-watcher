@@ -6,9 +6,9 @@ import time
 from typing import List, Dict
 import requests
 from bs4 import BeautifulSoup
-from lib import SqdcStore
-from lib.stores.product import Product
-from lib.stores.product_variant import ProductVariant
+from sqdc import SqdcStore
+from sqdc.dataobjects.product import Product
+from sqdc.dataobjects.product_variant import ProductVariant
 
 DEFAULT_LOCALE = 'en-CA'
 DOMAIN = 'https://www.sqdc.ca'
