@@ -2,7 +2,9 @@ import re
 from typing import List
 
 from tabulate import tabulate
-from .product import Product
+
+from lib.stores.product import Product
+from lib.stores.product_variant import ProductVariant
 
 
 class SqdcFormatter:
@@ -18,22 +20,22 @@ class SqdcFormatter:
     def format_product(product: Product):
         return '*{}* / {} - ({} {}) {}'.format(
             SqdcFormatter.format_name_with_type(product),
-            product.get_property('brand'),
+            product.brand,
             SqdcFormatter.format_category(product),
             SqdcFormatter.format_variants_available(product),
             SqdcFormatter.format_url(product))
 
     @staticmethod
     def format_variants_available(product: Product):
-        variants_in_stock = product.get_variants_in_stock()
-        quantities = sorted([float(v['specifications']['GramEquivalent']) for v in variants_in_stock])
+        variants_in_stock: List[ProductVariant] = product.get_variants_in_stock()
+        quantities = sorted([float(v.specifications['GramEquivalent']) for v in variants_in_stock])
         variants_descriptions = ', '.join([SqdcFormatter.trim_zeros(quantity) + 'g' for quantity in quantities])
         return variants_descriptions
 
     @staticmethod
     def format_brand_and_supplier(product: Product):
         producer_name = product.get_specification('ProducerName')
-        brand = product.get_property('brand')
+        brand = product.brand
         components = []
         if SqdcFormatter.should_display_brand(brand):
             components.append(brand)
@@ -58,7 +60,7 @@ class SqdcFormatter:
 
     @staticmethod
     def format_name(product):
-        name = product.get_property('title')
+        name = product.title
         strain = product.get_specification('Strain')
         if strain and strain.lower() != name.lower():
             name = '{} ({})'.format(strain, name)
@@ -103,7 +105,7 @@ class SqdcFormatter:
 
     @staticmethod
     def format_url(product):
-        url = product.get_property('url').replace('www.', '')
+        url = product.url.replace('www.', '')
         # remove the variant path component
         url = re.sub(r'(.+/\d+-P)(/\d+)', r'\1', url)
         return url
@@ -123,7 +125,7 @@ class SqdcFormatter:
         tabulated_data = [
             [SqdcFormatter.format_name(p),
              SqdcFormatter.format_brand_and_supplier(p),
-             SqdcFormatter.format_category(p),
+             SqdcFormatter.format_category(p)[:50],
              SqdcFormatter.format_type(p),
              SqdcFormatter.format_thc(p),
              SqdcFormatter.format_cbd(p),

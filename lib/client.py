@@ -1,13 +1,14 @@
 import functools
+import json
+import logging
+import string
 import time
-from typing import List
-
+from typing import List, Dict
 import requests
 from bs4 import BeautifulSoup
-import slack
-import logging
-
-from lib.product import Product
+from lib import SqdcStore
+from lib.stores.product import Product
+from lib.stores.product_variant import ProductVariant
 
 DEFAULT_LOCALE = 'en-CA'
 DOMAIN = 'https://www.sqdc.ca'
@@ -33,8 +34,12 @@ def api_response(root_key=''):
 
 
 class SqdcClient:
-    def __init__(self, session=None, locale=DEFAULT_LOCALE):
+    store: SqdcStore
+
+    def __init__(self, store: SqdcStore, session=None, locale=DEFAULT_LOCALE):
         self.locale = locale
+        self.store = store
+
         if session is None:
             session = requests.Session()
         self.session = session
@@ -84,13 +89,6 @@ class SqdcClient:
         self.log_request_elapsed(response)
         response.raise_for_status()
 
-    def send_slack_message(self, to_username: str, text: str):
-        self.slack_client.chat_postMessage(
-            channel='@{}'.format(to_username),
-            text=text,
-            username='Sqdc Trigger Notifications'
-        )
-
     def get_products(self, max_pages=None) -> List[Product]:
         if max_pages is None:
             max_pages = 999999
@@ -112,9 +110,7 @@ class SqdcClient:
         elapsed = time.time() - start_time
         log.info('COMPLETED - {} products in {} pages scanned in {:.2g}s'.format(len(products), page - 1, elapsed))
 
-        return sorted(
-            [Product(p) for p in products],
-            key=lambda p: p.get_specification('LevelTwoCategory'))
+        return sorted(products, key=lambda p: p.get_specification('LevelTwoCategory'))
 
     def get_products_html_page(self, pagenumber):
         all_products = True
@@ -130,7 +126,7 @@ class SqdcClient:
         return self._html_get(page_path)
 
     @staticmethod
-    def parse_products_html(raw_html):
+    def parse_products_html(raw_html: string):
         soup = BeautifulSoup(raw_html, 'html.parser')
         product_tags = soup.select('div.product-tile')
         products = []
@@ -139,15 +135,16 @@ class SqdcClient:
             title = title_anchor.contents[0]
             url = DOMAIN + title_anchor['href']
             try:
-                brand_tag = ptag.select_one('div[class="js-equalized-brand"]');
+                brand_tag = ptag.select_one('div[class="js-equalized-brand"]')
                 brand = "" if len(brand_tag.contents) == 0 else brand_tag.contents[0]
-                product = {
-                    'title': title,
-                    'id': title_anchor['data-productid'],
-                    'url': url,
-                    'in_stock': 'product-outofstock' not in ptag['class'],
-                    'brand': brand
-                }
+                product = Product(
+                    id=title_anchor['data-productid'],
+                    title=title,
+                    url=url,
+                    in_stock='product-outofstock' not in ptag['class'],
+                    brand=brand
+                )
+
                 products.append(product)
             except Exception as e:
                 print('Failed to parse product ' + title + ' URL=' + url)
@@ -155,45 +152,57 @@ class SqdcClient:
 
         return products
 
-    def populate_products_variants(self, products):
+    def populate_products_variants(self, products: List[Product]):
         log.debug('populating product variants')
 
-        product_ids = [p['id'] for p in products]
+        product_ids = [p.id for p in products]
         all_variants_prices = self.api_calculate_prices(product_ids)
 
         for product in products:
-            product_id = product['id']
+            product_id = product.id
             variant_prices = [pprice['VariantPrices']
                               for pprice in all_variants_prices
                               if pprice['ProductId'] == product_id][0]
             variants = [
-                {
-                    'id': v['VariantId'],
-                    'product_id': product_id,
-                    'list_price': v['ListPrice'],
-                    'price': v['DisplayPrice'],
-                    'price_per_gram': v['PricePerGram'],
-                    'in_stock': False
-                } for v in variant_prices
+                ProductVariant(
+                    id=v['VariantId'],
+                    product_id=product_id,
+                    list_price=SqdcClient.parse_price(v['ListPrice']),
+                    price=SqdcClient.parse_price(v['DisplayPrice']),
+                    price_per_gram=SqdcClient.parse_price(v['PricePerGram']),
+                    in_stock=False
+                )
+                for v in variant_prices
             ]
-            product['variants'] = variants
+            product.variants = variants
 
-        in_stock_products = [p for p in products if p['in_stock']]
+        in_stock_products = [p for p in products if p.in_stock]
         self.populate_products_variants_details(in_stock_products)
 
-    def populate_products_variants_details(self, products):
-        variants_ids_map = {}
+    @staticmethod
+    def parse_price(raw_price: str):
+        return float(raw_price.replace('$', ''))
+
+    def populate_products_variants_details(self, products: List[Product]):
+        variants_ids_map: Dict[string, ProductVariant] = {}
         for product in products:
-            variants_ids_map.update({v['id']: v['product_id'] for v in product['variants']})
+            variants_ids_map.update({v.id: v.product_id for v in product.variants})
+
         variants_ids = list(variants_ids_map.keys())
         variants_in_stock = self.api_find_inventory_items(variants_ids)
         for vid, pid in variants_ids_map.items():
             variant_in_stock = vid in variants_in_stock
             if variant_in_stock:
-                product = [p for p in products if p['id'] == pid][0]
-                variant = [v for v in product['variants'] if v['id'] == vid][0]
-                variant['in_stock'] = True
-                variant['specifications'] = self.get_variant_specifications(pid, vid)
+                product = [p for p in products if p.id == pid][0]
+                variant = [v for v in product.variants if v.id == vid][0]
+                variant.in_stock = True
+
+                db_variant = self.store.get_variant(pid, vid)
+                specs = db_variant.specifications if db_variant else None
+                if specs is None:
+                    variant.specifications = self.get_variant_specifications(pid, vid)
+                else:
+                    variant.specifications = specs
 
     def get_variant_specifications(self, product_id, variant_id):
         specifications = self.api_get_specifications(product_id, variant_id)[0]

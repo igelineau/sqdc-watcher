@@ -11,6 +11,8 @@ requests = "*"
 tabulate = "*"
 slackclient = "*"
 tornado = "*"
+sqlalchemy = "*"
+peewee = "*"
 
 [requires]
 python_version = "3.6"
