@@ -6,6 +6,7 @@ import traceback
 from typing import List
 
 from sqdc.dataobjects.productevent import ProductEvent
+from sqdc.logic.product_calculator import ProductCalculator
 from sqdc.server import SlackEndpointServer
 from sqdc.slack_client import SlackClient
 from sqdc.dataobjects.product import Product
@@ -71,34 +72,35 @@ class SqdcWatcher(Thread):
 
     def execute_scan(self):
         try:
-            products = self.client.get_products()
-            products_in_stock = ProductFilters.in_stock(products)
-
-            prev_products = self.store.get_products()
-            new_products = self.calculate_new_items(prev_products, products_in_stock)
-            vanished_products = self.calculate_new_items(products_in_stock, ProductFilters.in_stock(prev_products))
+            calculator = ProductCalculator(
+                previous_products=self.store.get_products(),
+                updated_products=self.client.get_products()
+            )
+            became_in_stock = calculator.get_became_in_stock()
+            became_out_of_stock = calculator.get_became_out_of_stock()
+            all_in_stock = ProductFilters.in_stock(calculator.updated_products)
 
             log.info('List of all available products:')
-            log.info(SqdcFormatter.format_products(products_in_stock, self.display_format))
+            log.info(SqdcFormatter.format_products(all_in_stock, self.display_format))
 
-            if len(new_products) == 0:
+            if len(became_in_stock) == 0:
                 log.info('No new product available')
             else:
                 log.info('saving products')
-                self.store.save_products(products)
+                self.store.save_products(calculator.updated_products)
 
-                self.apply_notification_rules(new_products)
-                self.add_event_to_products(new_products, ProductEvent.IN_STOCK)
-                self.add_event_to_products(vanished_products, ProductEvent.NOT_IN_STOCK)
+                for p in calculator.get_new_products():
+                    p.is_new = True
 
-                log.info('There are {} new products available since last scan :'.format(len(new_products)))
-                log.info(SqdcFormatter.build_products_table(new_products))
+                self.apply_notification_rules(became_in_stock)
+                self.add_event_to_products(became_in_stock, ProductEvent.IN_STOCK)
+                self.add_event_to_products(became_out_of_stock, ProductEvent.NOT_IN_STOCK)
 
-                if len(prev_products) > 0:
-                    log.info('Posting to Slack to announce the good news.')
-                    self.post_new_products_to_slack(new_products)
-                else:
-                    log.info('First run - not posting new products to Slack.')
+                log.info('There are {} new products available since last scan :'.format(len(became_in_stock)))
+                log.info(SqdcFormatter.build_products_table(became_in_stock))
+
+                self.send_in_stock_updates_to_slack_if_needed(calculator.previous_products, became_in_stock)
+
         except KeyboardInterrupt:
             log.info('CTRL+C pressed. exiting program.')
         except:
@@ -122,6 +124,14 @@ class SqdcWatcher(Thread):
                         for pid in cur_ids
                         if pid not in prev_ids]
         return [p for p in cur_products if p.id in new_products]
+
+    def send_in_stock_updates_to_slack_if_needed(self, previous_products, new_products_in_stock):
+        if len(previous_products) > 0:
+            log.info('Posting to Slack to announce the good news.')
+            self.post_new_products_to_slack(new_products_in_stock)
+        else:
+            log.info('First run - not posting new products to Slack.')
+
 
     def apply_notification_rules(self, products: List[Product]):
 

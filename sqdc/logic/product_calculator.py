@@ -1,23 +1,25 @@
 from typing import List
 
 from sqdc.dataobjects.product import Product
-from sqdc.dto.product_stock_differences import ProductStockDifferences
 
 
 class ProductCalculator:
-    def __init__(self, previous_products: List[Product], current_products: List[Product]):
-        self.current_products = current_products
+    def __init__(self, previous_products: List[Product], updated_products: List[Product]):
+        """
+        :type updated_products: object - Must contain only in-stock products (the code relies on this to work)
+        """
+        self.updated_products = updated_products
         self.previous_products = previous_products
 
-    def calculate_stock_differences(self):
-        became_in_stock = self.product_difference(self.previous_products, self.current_products)
-        became_out_of_stock = self.product_difference(self.current_products, self.previous_products)
-        return ProductStockDifferences(became_in_stock, became_out_of_stock)
+    def get_became_out_of_stock(self):
+        return [p for p in self.previous_products if p.is_in_stock() and not ProductCalculator.find_by_id(self.updated_products, p)]
 
-    def product_difference(self, left_operand: List[Product], right_operand: List[Product]):
-        prev_ids = set([p.id for p in left_operand if p.is_in_stock()])
-        cur_ids = set([p.id for p in right_operand if p.is_in_stock()])
-        new_products = [pid
-                        for pid in cur_ids
-                        if pid not in prev_ids]
-        return [p for p in right_operand if p.id in new_products]
+    def get_became_in_stock(self):
+        return [p for p in self.updated_products if p.is_in_stock() and not ProductCalculator.find_by_id(self.previous_products, p, lambda x: x.is_in_stock())]
+
+    def get_new_products(self):
+        return [p for p in self.updated_products if p.is_in_stock() and not ProductCalculator.find_by_id(self.previous_products, p)]
+
+    @staticmethod
+    def find_by_id(lookup_list: List[Product], product: Product,  match_predicate=lambda x: True):
+        return len([p for p in lookup_list if p.id == product.id and match_predicate(p)]) > 0

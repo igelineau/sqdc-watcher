@@ -17,6 +17,8 @@ class Product(Base):
     in_stock = Column(Boolean)
     brand = Column(String)
 
+    is_new = Column(Boolean, default=True)
+
     variants = relationship('ProductVariant', lazy='joined')
 
     def has_specifications(self):
