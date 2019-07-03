@@ -28,10 +28,14 @@ class SqdcFormatter:
 
     @staticmethod
     def format_variants_available(product: Product):
-        variants_in_stock: List[ProductVariant] = product.get_variants_in_stock()
-        quantities = sorted([float(v.specifications['GramEquivalent']) for v in variants_in_stock])
-        variants_descriptions = ', '.join([SqdcFormatter.trim_zeros(quantity) + 'g' for quantity in quantities])
+        variants_in_stock: List[ProductVariant] = sorted(product.get_variants_in_stock(), key=lambda v: float(v.specifications['GramEquivalent']))
+        variants_descriptions = ', '.join([SqdcFormatter.format_variant_quantity(variant.specifications['GramEquivalent']) for variant in variants_in_stock])
         return variants_descriptions
+
+    @staticmethod
+    def format_variant_quantity(raw_quantity: str):
+        grams_float = SqdcFormatter.trim_zeros(float(raw_quantity))
+        return f'{grams_float}g'
 
     @staticmethod
     def format_brand_and_supplier(product: Product):

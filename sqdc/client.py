@@ -1,14 +1,16 @@
 import functools
-import json
 import logging
 import string
 import time
 from typing import List, Dict
+
 import requests
 from bs4 import BeautifulSoup
+
 from sqdc import SqdcStore
 from sqdc.dataobjects.product import Product
 from sqdc.dataobjects.product_variant import ProductVariant
+from sqdc.formatter import SqdcFormatter
 
 DEFAULT_LOCALE = 'en-CA'
 DOMAIN = 'https://www.sqdc.ca'
@@ -203,6 +205,7 @@ class SqdcClient:
                     variant.specifications = self.get_variant_specifications(pid, vid)
                 else:
                     variant.specifications = specs
+                    variant.quantity_description=SqdcFormatter.format_variant_quantity(specs['GramEquivalent'])
 
     def get_variant_specifications(self, product_id, variant_id):
         specifications = self.api_get_specifications(product_id, variant_id)[0]
