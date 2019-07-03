@@ -110,7 +110,7 @@ class SqdcClient:
         elapsed = time.time() - start_time
         log.info('COMPLETED - {} products in {} pages scanned in {:.2g}s'.format(len(products), page - 1, elapsed))
 
-        return sorted(products, key=lambda p: p.get_specification('LevelTwoCategory'))
+        return sorted(products, key=lambda p: ('1' if p.is_new else '0') + p.get_specification('LevelTwoCategory'))
 
     def get_products_html_page(self, pagenumber):
         all_products = True

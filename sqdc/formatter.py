@@ -18,7 +18,8 @@ class SqdcFormatter:
 
     @staticmethod
     def format_product(product: Product):
-        return '*{}* / {} - ({} {}) {}'.format(
+        return '{}*{}* / {} - ({} {}) {}'.format(
+            SqdcFormatter.format_new_product_prefix(product),
             SqdcFormatter.format_name_with_type(product),
             product.brand,
             SqdcFormatter.format_category(product),
@@ -141,3 +142,7 @@ class SqdcFormatter:
     @staticmethod
     def trim_zeros(text):
         return '' if text is None else str.format('{}', text).rstrip('0').rstrip('.').rjust(2)
+
+    @staticmethod
+    def format_new_product_prefix(product):
+        return ':weed: *New* :weed: ' if product.is_new else ''

@@ -13,6 +13,7 @@ slackclient = "*"
 tornado = "*"
 sqlalchemy = "*"
 peewee = "*"
+alembic = "*"
 
 [requires]
 python_version = "3.6"
