@@ -1,11 +1,19 @@
 import re
 from typing import List
 
+from babel.dates import format_timedelta
+from datetime import datetime
 from tabulate import tabulate
 
 from sqdc.dataobjects.product import Product
 from sqdc.dataobjects.product_variant import ProductVariant
 
+tabulate.PRESERVE_WHITESPACE = True
+
+TITLE_MAX_WIDTH = 20
+STRAIN_MAX_WIDTH = 25
+SINGLE_BRANDING_MAX_WIDTH = 25
+DUAL_BRANDING_MAX_COMP_WIDTH = 12
 
 class SqdcFormatter:
 
@@ -28,8 +36,11 @@ class SqdcFormatter:
 
     @staticmethod
     def format_variants_available(product: Product):
-        variants_in_stock: List[ProductVariant] = sorted(product.get_variants_in_stock(), key=lambda v: float(v.specifications['GramEquivalent']))
-        variants_descriptions = ', '.join([SqdcFormatter.format_variant_quantity(variant.specifications['GramEquivalent']) for variant in variants_in_stock])
+        variants_in_stock: List[ProductVariant] = sorted(product.get_variants_in_stock(),
+                                                         key=lambda v: float(v.specifications['GramEquivalent']))
+        variants_descriptions = ', '.join(
+            [SqdcFormatter.format_variant_quantity(variant.specifications['GramEquivalent']) for variant in
+             variants_in_stock])
         return variants_descriptions
 
     @staticmethod
@@ -51,9 +62,15 @@ class SqdcFormatter:
 
         display_string = components[0]
         if len(components) > 1:
-            display_string += ' (' + components[1] + ')'
+            display_string += ' (' + SqdcFormatter.apply_max_length(components[1], 12) + ')'
+        else:
+            display_string = SqdcFormatter.apply_max_length(display_string, 25)
 
         return display_string
+
+    @staticmethod
+    def apply_max_length(text: str, max_length: int):
+        return text[:max_length] + ('...' if len(text) > max_length else '')
 
     @staticmethod
     def should_display_brand(brand):
@@ -66,9 +83,13 @@ class SqdcFormatter:
     @staticmethod
     def format_name(product):
         name = product.title
-        strain = product.get_specification('Strain')
+        strain = SqdcFormatter.apply_max_length(product.get_specification('Strain'), STRAIN_MAX_WIDTH)
         if strain and strain.lower() != name.lower():
-            name = '{} ({})'.format(strain, name)
+            if ',' in strain:
+                # it's a blend, so expect a strains list. less important.
+                name = '{} ({})'.format(name, strain)
+            else:
+                name = '{} ({})'.format(strain, name)
         return name
 
     @staticmethod
@@ -117,27 +138,28 @@ class SqdcFormatter:
 
     @staticmethod
     def build_products_table(products: List[Product], prepend_with_newline=True):
+        grid_fmt = 'fancy_grid'
         headers = [
+            '% avail.',
             'Name',
+            'Strain',
             'Brand',
             'Category',
             'Type',
-            'THC',
-            'CBD',
-            'avail. formats',
+            'formats',
             'URL'
         ]
         tabulated_data = [
-            [SqdcFormatter.format_name(p),
+            [SqdcFormatter.format_availability(p),
+             SqdcFormatter.apply_max_length(p.title, TITLE_MAX_WIDTH),
+             SqdcFormatter.apply_max_length(p.get_specification('Strain'), STRAIN_MAX_WIDTH),
              SqdcFormatter.format_brand_and_supplier(p),
-             SqdcFormatter.format_category(p)[:50],
+             SqdcFormatter.apply_max_length(SqdcFormatter.format_category(p), 50),
              SqdcFormatter.format_type(p),
-             SqdcFormatter.format_thc(p),
-             SqdcFormatter.format_cbd(p),
              SqdcFormatter.format_variants_available(p),
              SqdcFormatter.format_url(p)] for p in products]
         prefix = '\n' if prepend_with_newline else ''
-        return prefix + tabulate(tabulated_data, headers=headers) + '\n'
+        return prefix + tabulate(tabulated_data, headers=headers, tablefmt=grid_fmt) + '\n'
 
     @staticmethod
     def format_category(product: Product):
@@ -150,3 +172,11 @@ class SqdcFormatter:
     @staticmethod
     def format_new_product_prefix(product):
         return ':weed: *New* :weed: ' if product.is_new else ''
+
+    @staticmethod
+    def format_availability(product):
+        if product.availability_stats:
+            delta = format_timedelta(datetime.now() - product.created, granularity='hour')
+            availability_percent = str(round(product.availability_stats)).rjust(3, ' ')
+            availability = f'|{availability_percent}%'
+            return f'{availability} ({delta})'

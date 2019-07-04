@@ -11,6 +11,7 @@ from sqdc import SqdcStore
 from sqdc.dataobjects.product import Product
 from sqdc.dataobjects.product_variant import ProductVariant
 from sqdc.formatter import SqdcFormatter
+from sqdc.logic.product_history_analyzer import ProductHistoryAnalyzer
 
 DEFAULT_LOCALE = 'en-CA'
 DOMAIN = 'https://www.sqdc.ca'
@@ -36,8 +37,6 @@ def api_response(root_key=''):
 
 
 class SqdcClient:
-    store: SqdcStore
-
     def __init__(self, store: SqdcStore, session=None, locale=DEFAULT_LOCALE):
         self.locale = locale
         self.store = store
@@ -180,6 +179,25 @@ class SqdcClient:
 
         in_stock_products = [p for p in products if p.in_stock]
         self.populate_products_variants_details(in_stock_products)
+
+    def _calculate_variant_availability_stats(self, variant: ProductVariant):
+        entries = self.store.get_variant_history(variant.product_id, variant.id)
+        return ProductHistoryAnalyzer(variant).calculate_percentage_in_stock(entries)
+
+    def update_availability_stats(self, product: Product):
+        variants = product.get_variants_in_stock()
+        if len(variants) == 0:
+            return
+
+        eight_variant = next(iter([v for v in variants if v.product_id == product.id and float(v.specifications['GramEquivalent']) == 3.5]), None)
+        if eight_variant:
+            best_variant = tuple([eight_variant, self._calculate_variant_availability_stats(eight_variant)])
+        else:
+            best_variant = sorted([tuple([v, self._calculate_variant_availability_stats(v)]) for v in variants], key=lambda x: x[1], reverse=True)[0]
+
+        log.debug(f'Variant availability: {best_variant[1]}%')
+        availability = best_variant[1] if best_variant else None
+        product.availability_stats = availability
 
     @staticmethod
     def parse_price(raw_price: str):

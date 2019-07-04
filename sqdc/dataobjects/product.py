@@ -3,7 +3,6 @@ from sqlalchemy import Column, String, DateTime, Boolean
 from sqlalchemy.orm import relationship
 
 from sqdc.dataobjects.base import Base
-from sqdc.dataobjects.product_variant import ProductVariant
 
 
 class Product(Base):
@@ -18,6 +17,7 @@ class Product(Base):
     brand = Column(String)
 
     is_new = Column(Boolean, default=True)
+    availability_stats = Column(String)
 
     variants = relationship('ProductVariant', lazy='joined')
 

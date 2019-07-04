@@ -14,6 +14,7 @@ tornado = "*"
 sqlalchemy = "*"
 peewee = "*"
 alembic = "*"
+babel = "*"
 
 [requires]
 python_version = "3.6"

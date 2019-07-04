@@ -51,8 +51,13 @@ class SqdcStore:
 
     def save_products(self, products: List[Product]):
         with self.open_session() as session:
+            # make sure we don't leave any flag set to True (only in-stock products are provided to this method).
+            session.query(Product).update(values={'in_stock': False})
+            session.query(ProductVariant).update(values={'in_stock': False})
+
             for p in products:
                 session.merge(p)
+
             session.commit()
 
     def add_product_history_entries(self, entries: List[ProductHistory]):
@@ -67,6 +72,20 @@ class SqdcStore:
     def get_variant(self, product_id: string, variant_id: string) -> ProductVariant:
         with self.open_session() as session:
             return self._get_variant(product_id, variant_id, session)
+
+    def get_variant_history(self, product_id, variant_id):
+        with self.open_session() as session:
+            return session.query(ProductHistory)\
+                .filter_by(product_id=product_id, variant_id=variant_id)\
+                .order_by(ProductHistory.timestamp)\
+                .all()
+
+    def get_last_in_stock_variant_history(self, product_id: str, variant_id: str, event):
+        with self.open_session() as session:
+            return session.query(ProductHistory)\
+                .filter_by(product_id=product_id, variant_id=variant_id, event=event)\
+                .order_by(ProductHistory.timestamp.desc())\
+                .first()
 
     @staticmethod
     def _get_variant(product_id, variant_id, session: Session):

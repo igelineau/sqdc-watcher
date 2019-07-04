@@ -72,10 +72,8 @@ class SqdcWatcher(Thread):
 
     def execute_scan(self):
         try:
-            calculator = ProductCalculator(
-                previous_products=self.store.get_products(),
-                updated_products=self.client.get_products()
-            )
+            calculator = self.refresh_products()
+
             became_in_stock = calculator.get_became_in_stock()
             became_out_of_stock = calculator.get_became_out_of_stock()
             all_in_stock = ProductFilters.in_stock(calculator.updated_products)
@@ -86,12 +84,6 @@ class SqdcWatcher(Thread):
             if len(became_in_stock) == 0:
                 log.info('No new product available')
             else:
-                log.info('saving products')
-                self.store.save_products(calculator.updated_products)
-
-                for p in calculator.get_new_products():
-                    p.is_new = True
-
                 self.apply_notification_rules(became_in_stock)
                 self.add_event_to_products(became_in_stock, ProductEvent.IN_STOCK)
                 self.add_event_to_products(became_out_of_stock, ProductEvent.NOT_IN_STOCK)
@@ -107,6 +99,31 @@ class SqdcWatcher(Thread):
             traceback.format_exc()
             log.error('watcher job execution encountered an error:')
             log.error(traceback.format_exc())
+
+    def refresh_products(self):
+        calculator = ProductCalculator(
+            previous_products=self.store.get_products(),
+            updated_products=self.client.get_products()
+        )
+
+        became_in_stock = calculator.get_became_in_stock()
+        if len(became_in_stock) > 0:
+            for p in calculator.updated_products:
+                p.is_new = False
+
+            for p in calculator.get_new_products():
+                p.is_new = True
+
+            self.store.save_products(calculator.updated_products)
+
+        products_refetched = self.store.get_products()
+        for p in products_refetched:
+            self.client.update_availability_stats(p)
+
+        return ProductCalculator(
+            previous_products=calculator.previous_products,
+            updated_products=list([p for p in products_refetched if ProductCalculator.find_by_id(calculator.updated_products, p)])
+        )
 
     def post_new_products_to_slack(self, new_products: List[Product]):
         if self.slack_post_url:
