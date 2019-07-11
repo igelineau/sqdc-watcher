@@ -12,6 +12,7 @@ class WatcherOptions:
     display_format: str
     slack_port: int
     no_cache: bool
+    enable_slack_post: bool
 
     def __init__(self):
         self.notification_rules = []

@@ -37,6 +37,7 @@ class SqdcWatcher(Thread):
         self.display_format = options.display_format
         self.min_duration_between_scans_minutes = 15
         self.no_cache = options.no_cache
+        self.enable_slack_post = options.enable_slack_post
 
         self.slack_server = SlackEndpointServer(options.slack_port, self, self.store)
 
@@ -161,10 +162,15 @@ class SqdcWatcher(Thread):
     def send_in_stock_updates_to_slack_if_needed(self, previous_products: List[Product], new_products_in_stock: List[Product]):
         if len(previous_products) > 0:
             if self.slack_post_url and len(new_products_in_stock) > 0:
-                log.info(f'Send Slack notification in channel ({len(new_products_in_stock)} products)')
+                log.info(f'Send Slack notification in channel for {len(new_products_in_stock)} products:')
                 message = '\n'.join(['- ' + SqdcFormatter.format_product(p) for p in new_products_in_stock])
-                self.products_updater.sqdc_client.post_to_slack(self.slack_post_url, message)
-                self.store.mark_products_notified(new_products_in_stock)
+                log.info(message)
+
+                if self.enable_slack_post:
+                    self.products_updater.sqdc_client.post_to_slack(self.slack_post_url, message)
+                    self.store.mark_products_notified(new_products_in_stock)
+                else:
+                    log.warning('--enable-slack-post was not provided. Skipping Slack notification post.')
         else:
             log.info('First run - not posting new products to Slack.')
 

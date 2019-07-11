@@ -1,11 +1,13 @@
 import argparse
 import logging
 import signal
-import sys
 from threading import Event
 
+import coloredlogs
+
+from sqdc import SqdcStore
 from sqdc.formatter import SqdcFormatter
-from sqdc.products_updater import SqdcClient
+from sqdc.products_updater import ProductsUpdater
 from sqdc.watcher import SqdcWatcher
 from sqdc.watcherOptions import WatcherOptions
 
@@ -50,6 +52,13 @@ def parse_args():
         action='store_true',
         help='Disables products caching. Always re-fetch products from SQDC API.'
     )
+
+    parser.add_argument(
+        '--enable-slack-post',
+        action='store_true',
+        help='Specify this flag to enable posting to Slack new products notifications. If not specified, new products to be notified are printed to the console.'
+    )
+
     return parser.parse_args()
 
 
@@ -64,12 +73,12 @@ log_level_table = {
 
 args = parse_args()
 log_test_indicator = ' [TEST] ' if args.test else ''
+coloredlogs.install(level='debug')
 logging.basicConfig(level=log_level_table[args.log_level.lower()],
                     datefmt='%Y-%m-%d %H:%M:%S',
                     format='%(levelname)s' + log_test_indicator + ':%(name)s: %(asctime)s - %(message)s')
 
 if args.watch:
-
     options = WatcherOptions.default()
     options.slack_post_url = args.slack_post_url
     options.is_test_mode = args.test
@@ -78,6 +87,7 @@ if args.watch:
     options.interval = args.watch_interval
     options.slack_port = int(args.slack_port)
     options.no_cache = args.no_cache
+    options.enable_slack_post = args.enable_slack_post
 
     stop_event = Event()
     watcher = SqdcWatcher(stop_event, options)
@@ -85,8 +95,9 @@ if args.watch:
     watcher.start()
     print('Watcher daemon started')
 else:
-    client = SqdcClient()
-    products = client.get_products()
+    store = SqdcStore.SqdcStore(args.test)
+    updater = ProductsUpdater(store)
+    products = updater.get_products()
     products_in_stock = [p for p in products if p.is_in_stock()]
     print(SqdcFormatter.format_products(products_in_stock, args.display_format))
 
