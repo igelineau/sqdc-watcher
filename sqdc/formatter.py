@@ -15,6 +15,7 @@ STRAIN_MAX_WIDTH = 25
 SINGLE_BRANDING_MAX_WIDTH = 25
 DUAL_BRANDING_MAX_COMP_WIDTH = 12
 
+
 class SqdcFormatter:
 
     @staticmethod

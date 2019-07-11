@@ -1,21 +1,22 @@
-import logging
 import datetime
-from threading import Thread, Event
+import logging
 import traceback
-
+from threading import Thread, Event
 from typing import List
 
-from sqdc.dataobjects.productevent import ProductEvent
-from sqdc.logic.product_calculator import ProductCalculator
-from sqdc.server import SlackEndpointServer
-from sqdc.slack_client import SlackClient
+from babel.dates import format_timedelta
+
 from sqdc.dataobjects.product import Product
 from sqdc.dataobjects.product_history import ProductHistory
+from sqdc.dataobjects.productevent import ProductEvent
+from sqdc.logic.product_calculator import ProductCalculator, find_by_id
+from sqdc.server import SlackEndpointServer
+from sqdc.slack_client import SlackClient
 from sqdc.watcherOptions import WatcherOptions
-from .client import SqdcClient
-from .formatter import SqdcFormatter
 from .SqdcStore import SqdcStore
+from .formatter import SqdcFormatter
 from .product_filters import ProductFilters
+from .products_updater import ProductsUpdater
 
 log = logging.getLogger(__name__)
 
@@ -27,13 +28,15 @@ class SqdcWatcher(Thread):
         Thread.__init__(self)
         self._stopped = event
         self.store = SqdcStore(options.is_test_mode)
-        self.client = SqdcClient(self.store)
+        self.products_updater = ProductsUpdater(self.store)
         self.slack_client = SlackClient(options.slack_token)
         self.slack_post_url = options.slack_post_url
         self.display_format = 'table'
         self.is_test = options.is_test_mode
         self.interval = options.interval * 60
         self.display_format = options.display_format
+        self.min_duration_between_scans_minutes = 15
+        self.no_cache = options.no_cache
 
         self.slack_server = SlackEndpointServer(options.slack_port, self, self.store)
 
@@ -53,13 +56,18 @@ class SqdcWatcher(Thread):
             is_stopping = self._stopped.wait(self.interval)
 
     def shutdown(self):
-        print('Watcher daemon - shutting down...')
+        log.info('Watcher daemon - shutting down...')
         self.slack_server.stop()
 
     def log_initialized_event(self):
         log.info('INITIALIZED - interval = {}'.format(self.interval))
-        last_saved_products_rel = datetime.datetime.now() - self.store.get_products_last_saved_timestamp()
-        print('Products were last updated {}m ago'.format(last_saved_products_rel))
+        app_state = self.store.get_app_state()
+
+        if not app_state.last_scan_timestamp:
+            last_scan_relative = 'Never'
+        else:
+            last_scan_relative = format_timedelta(app_state.last_scan_timestamp - datetime.datetime.now(), add_direction=True)
+        log.info(f'Products were last updated {last_scan_relative}')
 
     def log_notification_rules(self):
         notification_rules = self.store.get_all_notification_rules()
@@ -74,24 +82,31 @@ class SqdcWatcher(Thread):
         try:
             calculator = self.refresh_products()
 
-            became_in_stock = calculator.get_became_in_stock()
-            became_out_of_stock = calculator.get_became_out_of_stock()
             all_in_stock = ProductFilters.in_stock(calculator.updated_products)
-
             log.info('List of all available products:')
             log.info(SqdcFormatter.format_products(all_in_stock, self.display_format))
 
+            became_out_of_stock = calculator.get_became_out_of_stock()
+            if len(became_out_of_stock) > 0:
+                log.info('Products just became out of stock: ' + ', '.join([f'{p}' for p in became_out_of_stock]))
+
+            became_in_stock = calculator.get_became_in_stock()
+            became_in_stock_for_notifications = list(filter(lambda p: not calculator.was_product_recently_in_stock(p), became_in_stock))
+            nb_ignored_because_recently_notified = len(became_in_stock) - len(became_in_stock_for_notifications)
+            if nb_ignored_because_recently_notified > 0:
+                log.info(f'{nb_ignored_because_recently_notified} products became in stock, but were ignored because they were already notified earlier.')
+
             if len(became_in_stock) == 0:
-                log.info('No new product available')
+                log.info(f'No product came back in stock. Total in stock: {len(all_in_stock)}')
             else:
                 self.apply_notification_rules(became_in_stock)
                 self.add_event_to_products(became_in_stock, ProductEvent.IN_STOCK)
                 self.add_event_to_products(became_out_of_stock, ProductEvent.NOT_IN_STOCK)
 
-                log.info('There are {} new products available since last scan :'.format(len(became_in_stock)))
+                log.info('There are {} new products available since last scan (total, {} in stock)'.format(len(became_in_stock), len(all_in_stock)))
                 log.info(SqdcFormatter.build_products_table(became_in_stock))
 
-                self.send_in_stock_updates_to_slack_if_needed(calculator.previous_products, became_in_stock)
+                self.send_in_stock_updates_to_slack_if_needed(calculator.previous_products, became_in_stock_for_notifications)
 
         except KeyboardInterrupt:
             log.info('CTRL+C pressed. exiting program.')
@@ -101,9 +116,21 @@ class SqdcWatcher(Thread):
             log.error(traceback.format_exc())
 
     def refresh_products(self):
+        app_state = self.store.get_app_state()
+        time_since_refresh = (datetime.datetime.now() - (app_state.last_scan_timestamp or datetime.datetime.min))
+        use_cached_products = not self.no_cache and time_since_refresh < datetime.timedelta(minutes=self.min_duration_between_scans_minutes)
+        if use_cached_products:
+            log.debug('Using cached products')
+        else:
+            log.debug('Re-fetching products from SQDL API...')
+
+        store_products = self.store.get_products()
+        updated_products = self.products_updater.get_products(cached_products=use_cached_products and self.store.get_products())
+
         calculator = ProductCalculator(
-            previous_products=self.store.get_products(),
-            updated_products=self.client.get_products()
+            self.store,
+            previous_products=store_products,
+            updated_products=updated_products
         )
 
         became_in_stock = calculator.get_became_in_stock()
@@ -114,41 +141,28 @@ class SqdcWatcher(Thread):
             for p in calculator.get_new_products():
                 p.is_new = True
 
-            self.store.save_products(calculator.updated_products)
+        log.info(f'Saving {len(calculator.updated_products)} updated products')
+        self.store.save_products(calculator.updated_products)
+        became_out_of_stock = calculator.get_became_out_of_stock()
+        if len(became_out_of_stock) > 0:
+            log.info(f'Saving {len(became_out_of_stock)} products that just became out of stock: ' + ' '.join([str(p) for p in became_out_of_stock]))
+            self.store.save_products(became_out_of_stock)
 
         products_refetched = self.store.get_products()
         for p in products_refetched:
-            self.client.update_availability_stats(p)
+            self.products_updater.update_availability_stats(p)
 
-        return ProductCalculator(
-            previous_products=calculator.previous_products,
-            updated_products=list([p for p in products_refetched if ProductCalculator.find_by_id(calculator.updated_products, p)])
-        )
+        return calculator
 
-    def post_new_products_to_slack(self, new_products: List[Product]):
-        if self.slack_post_url:
-            message = '\n'.join(['- ' + SqdcFormatter.format_product(p) for p in new_products])
-            self.client.post_to_slack(self.slack_post_url, message)
-
-    def handle_in_stock_products(self, products: List[Product]):
-        self.store.save_products(products)
-
-    @staticmethod
-    def calculate_new_items(prev_products: List[Product], cur_products: List[Product]):
-        prev_ids = set([p.id for p in prev_products if p.is_in_stock()])
-        cur_ids = set([p.id for p in cur_products if p.is_in_stock()])
-        new_products = [pid
-                        for pid in cur_ids
-                        if pid not in prev_ids]
-        return [p for p in cur_products if p.id in new_products]
-
-    def send_in_stock_updates_to_slack_if_needed(self, previous_products, new_products_in_stock):
+    def send_in_stock_updates_to_slack_if_needed(self, previous_products: List[Product], new_products_in_stock: List[Product]):
         if len(previous_products) > 0:
-            log.info('Posting to Slack to announce the good news.')
-            self.post_new_products_to_slack(new_products_in_stock)
+            if self.slack_post_url and len(new_products_in_stock) > 0:
+                log.info(f'Send Slack notification in channel ({len(new_products_in_stock)} products)')
+                message = '\n'.join(['- ' + SqdcFormatter.format_product(p) for p in new_products_in_stock])
+                self.products_updater.sqdc_client.post_to_slack(self.slack_post_url, message)
+                self.store.mark_products_notified(new_products_in_stock)
         else:
             log.info('First run - not posting new products to Slack.')
-
 
     def apply_notification_rules(self, products: List[Product]):
 

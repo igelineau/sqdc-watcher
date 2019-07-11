@@ -5,7 +5,7 @@ import sys
 from threading import Event
 
 from sqdc.formatter import SqdcFormatter
-from sqdc.client import SqdcClient
+from sqdc.products_updater import SqdcClient
 from sqdc.watcher import SqdcWatcher
 from sqdc.watcherOptions import WatcherOptions
 
@@ -45,6 +45,11 @@ def parse_args():
         action='store_true',
         help='Save the products to products-test.json'
     )
+    parser.add_argument(
+        '--no-cache',
+        action='store_true',
+        help='Disables products caching. Always re-fetch products from SQDC API.'
+    )
     return parser.parse_args()
 
 
@@ -72,6 +77,7 @@ if args.watch:
     options.slack_token = args.slack_oauth_token
     options.interval = args.watch_interval
     options.slack_port = int(args.slack_port)
+    options.no_cache = args.no_cache
 
     stop_event = Event()
     watcher = SqdcWatcher(stop_event, options)

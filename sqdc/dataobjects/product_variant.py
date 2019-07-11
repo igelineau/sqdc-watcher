@@ -1,6 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import Column, String, DateTime, Numeric, Boolean, ForeignKey, JSON
+from sqlalchemy import Column, String, DateTime, Boolean, ForeignKey, JSON, Float
+from sqlalchemy.orm import relationship
 
 from sqdc.dataobjects.base import Base
 
@@ -14,10 +15,15 @@ class ProductVariant(Base):
     last_updated = Column(DateTime, default=datetime.now, onupdate=datetime.now)
     in_stock = Column(Boolean)
     specifications = Column(JSON)
-    list_price = Column(Numeric)
-    price = Column(Numeric)
-    price_per_gram = Column(Numeric)
+    list_price = Column(Float)
+    price = Column(Float)
+    price_per_gram = Column(Float)
     quantity_description = Column(String)
 
+    product = relationship('Product', lazy='subquery', back_populates='variants')
+
     def __repr__(self):
-        return f'ProductVariant(id={self.id}, product_id={self.product_id}, in_stock={self.in_stock}, specifications={self.specifications})'
+        return f'ProductVariant(id={self.id}, product={self.product.title}, in_stock={self.in_stock})'
+
+    def detailed_description(self):
+        return f'ProductVariant(id={self.id}, product={self.product.title}, in_stock={self.in_stock})\n{self.specifications}'
