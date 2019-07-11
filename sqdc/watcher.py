@@ -9,7 +9,7 @@ from babel.dates import format_timedelta
 from sqdc.dataobjects.product import Product
 from sqdc.dataobjects.product_history import ProductHistory
 from sqdc.dataobjects.productevent import ProductEvent
-from sqdc.logic.product_calculator import ProductCalculator, find_by_id
+from sqdc.logic.product_calculator import ProductCalculator
 from sqdc.server import SlackEndpointServer
 from sqdc.slack_client import SlackClient
 from sqdc.watcherOptions import WatcherOptions
@@ -117,7 +117,7 @@ class SqdcWatcher(Thread):
 
     @staticmethod
     def product_filter_for_notification(product: Product, calculator: ProductCalculator):
-        return product.category.lower() == 'dried flowers' and calculator.was_product_recently_in_stock(product)
+        return product.category.lower() == 'dried flowers' and not calculator.was_product_recently_in_stock(product)
 
     def refresh_products(self):
         app_state = self.store.get_app_state()
