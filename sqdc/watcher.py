@@ -91,10 +91,10 @@ class SqdcWatcher(Thread):
                 log.info('Products just became out of stock: ' + ', '.join([f'{p}' for p in became_out_of_stock]))
 
             became_in_stock = calculator.get_became_in_stock()
-            became_in_stock_for_notifications = list(filter(lambda p: not calculator.was_product_recently_in_stock(p), became_in_stock))
+            became_in_stock_for_notifications = list(filter(lambda p: self.product_filter_for_notification(p, calculator), became_in_stock))
             nb_ignored_because_recently_notified = len(became_in_stock) - len(became_in_stock_for_notifications)
             if nb_ignored_because_recently_notified > 0:
-                log.info(f'{nb_ignored_because_recently_notified} products became in stock, but were ignored because they were already notified earlier.')
+                log.info(f'{nb_ignored_because_recently_notified} products became in stock, but were filtered - they won\'t be posted to Slack.')
 
             if len(became_in_stock) == 0:
                 log.info(f'No product came back in stock. Total in stock: {len(all_in_stock)}')
@@ -115,6 +115,10 @@ class SqdcWatcher(Thread):
             log.error('watcher job execution encountered an error:')
             log.error(traceback.format_exc())
 
+    @staticmethod
+    def product_filter_for_notification(product: Product, calculator: ProductCalculator):
+        return product.category.lower() == 'dried flowers' and calculator.was_product_recently_in_stock(product)
+
     def refresh_products(self):
         app_state = self.store.get_app_state()
         time_since_refresh = (datetime.datetime.now() - (app_state.last_scan_timestamp or datetime.datetime.min))
@@ -122,7 +126,7 @@ class SqdcWatcher(Thread):
         if use_cached_products:
             log.debug('Using cached products')
         else:
-            log.debug('Re-fetching products from SQDL API...')
+            log.debug('Re-fetching products from SQDC API...')
 
         store_products = self.store.get_products()
         updated_products = self.products_updater.get_products(cached_products=use_cached_products and self.store.get_products())
