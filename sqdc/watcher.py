@@ -97,12 +97,13 @@ class SqdcWatcher(Thread):
             if nb_ignored_because_recently_notified > 0:
                 log.info(f'{nb_ignored_because_recently_notified} products became in stock, but were filtered - they won\'t be posted to Slack.')
 
+            self.add_event_to_products(became_out_of_stock, ProductEvent.NOT_IN_STOCK)
+            self.add_event_to_products(became_in_stock, ProductEvent.IN_STOCK)
+
             if len(became_in_stock) == 0:
                 log.info(f'No product came back in stock. Total in stock: {len(all_in_stock)}')
             else:
                 self.apply_notification_rules(became_in_stock)
-                self.add_event_to_products(became_in_stock, ProductEvent.IN_STOCK)
-                self.add_event_to_products(became_out_of_stock, ProductEvent.NOT_IN_STOCK)
 
                 log.info('There are {} new products available since last scan (total, {} in stock)'.format(len(became_in_stock), len(all_in_stock)))
                 log.info(SqdcFormatter.build_products_table(became_in_stock))
@@ -146,16 +147,15 @@ class SqdcWatcher(Thread):
             for p in calculator.get_new_products():
                 p.is_new = True
 
+        for p in calculator.updated_products:
+            self.products_updater.update_availability_stats(p)
+
         log.info(f'Saving {len(calculator.updated_products)} updated products')
         self.store.save_products(calculator.updated_products)
         became_out_of_stock = calculator.get_became_out_of_stock()
         if len(became_out_of_stock) > 0:
             log.info(f'Saving {len(became_out_of_stock)} products that just became out of stock: ' + ' '.join([str(p) for p in became_out_of_stock]))
             self.store.save_products(became_out_of_stock)
-
-        products_refetched = self.store.get_products()
-        for p in products_refetched:
-            self.products_updater.update_availability_stats(p)
 
         return calculator
 
