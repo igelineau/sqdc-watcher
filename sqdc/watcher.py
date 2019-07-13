@@ -147,8 +147,8 @@ class SqdcWatcher(Thread):
             for p in calculator.get_new_products():
                 p.is_new = True
 
-        for p in calculator.updated_products:
-            self.products_updater.update_availability_stats(p)
+        # for p in calculator.updated_products:
+        #     self.products_updater.update_availability_stats(p)
 
         log.info(f'Saving {len(calculator.updated_products)} updated products')
         self.store.save_products(calculator.updated_products)
