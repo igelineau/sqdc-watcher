@@ -1,5 +1,7 @@
 import functools
 import logging
+from typing import Iterable
+
 import requests
 
 from sqdc import SqdcStore
@@ -93,9 +95,10 @@ class SqdcClient:
         return self._api_post('product/calculatePrices', request_payload)
 
     @api_response()
-    def api_find_inventory_items(self, skus_list):
-        log.info(f'calling inventory/findInventoryItems with {len(skus_list)} skus')
-        request_payload = {'skus': skus_list}
+    def api_find_inventory_items(self, skus: Iterable[str]):
+        sku_list = list(skus)
+        log.info(f'calling inventory/findInventoryItems with {len(sku_list)} skus')
+        request_payload = {'skus': sku_list}
         return self._api_post('inventory/findInventoryItems', request_payload)
 
     @api_response('Groups')
