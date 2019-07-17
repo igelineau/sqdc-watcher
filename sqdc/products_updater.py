@@ -3,7 +3,8 @@ import random
 import string
 import time
 from datetime import datetime
-from typing import List, Dict
+from threading import Event
+from typing import List, Dict, Iterable
 
 from babel.dates import format_timedelta
 from bs4 import BeautifulSoup
@@ -28,16 +29,26 @@ log = logging.getLogger(__name__)
 class ProductsUpdater:
     store: SqdcStore
     sqdc_client: SqdcClient
+    db_products: List[Product]
+    db_variants: Dict[str, ProductVariant]
 
-    def __init__(self, store: SqdcStore):
+    def __init__(self, store: SqdcStore, sqdc_client: SqdcClient, stop_event: Event):
+        self.stop_event = stop_event
         self.store = store
-        self.sqdc_client = SqdcClient()
+        self.sqdc_client = sqdc_client
         self.use_mocked_variants_in_stock = False
 
     def get_products(self, cached_products: List[Product], max_pages: int = 999999) -> List[Product]:
         start_time = time.time()
 
-        products = cached_products or self.fetch_all_products_summary(max_pages=max_pages)
+        if cached_products:
+            self.db_products = cached_products
+            products = cached_products
+        else:
+            self.db_products = self.store.get_products()
+            products = self.fetch_all_products_summary(max_pages=max_pages)
+        self.db_variants = ProductsUpdater.expand_all_variants(self.db_products)
+
         self.populate_products_variants(products, products_cache_used=bool(cached_products))
 
         elapsed = format_timedelta(time.time() - start_time, granularity='millisecond')
@@ -45,7 +56,15 @@ class ProductsUpdater:
 
         return products
 
-    def fetch_all_products_summary(self, max_pages: int):
+    @staticmethod
+    def expand_all_variants(products: List[Product]) -> Dict[str, ProductVariant]:
+        variants = {}
+        for p in products:
+            for v in p.variants:
+                variants[v.id] = v
+        return variants
+
+    def fetch_all_products_summary(self, max_pages: int) -> List[Product]:
         page = 1
         has_reached_end = False
         products = []
@@ -57,12 +76,12 @@ class ProductsUpdater:
                 page += 1
             products += products_in_page
         log.info(f'Fetched {len(products)} from SQDC API ({page - 1})')
+
         self.store.update_last_scan_timestamp(datetime.now())
 
         return products
 
-    @staticmethod
-    def parse_products_html(raw_html: string):
+    def parse_products_html(self, raw_html: string) -> List[Product]:
         soup = BeautifulSoup(raw_html, 'html.parser')
         product_tags = soup.select('div.product-tile')
         products = []
@@ -73,13 +92,18 @@ class ProductsUpdater:
             try:
                 brand_tag = ptag.select_one('div[class="js-equalized-brand"]')
                 brand = "" if len(brand_tag.contents) == 0 else brand_tag.contents[0]
-                product = Product(
-                    id=title_anchor['data-productid'],
-                    title=title,
-                    url=url,
-                    in_stock='product-outofstock' not in ptag['class'],
-                    brand=brand
-                )
+
+                product_id = title_anchor['data-productid']
+                db_product = find_by_id(self.db_products, product_id)
+
+                product = Product(id=product_id)
+                if db_product:
+                    self.merge_product(product, db_product)
+
+                product.title = title
+                product.url = url
+                product.in_stock = 'product-outofstock' not in ptag['class']
+                product.brand = brand
 
                 products.append(product)
             except Exception as e:
@@ -99,17 +123,22 @@ class ProductsUpdater:
             variant_prices = [pprice['VariantPrices']
                               for pprice in all_variants_prices
                               if pprice['ProductId'] == product_id][0]
-            variants = [
-                ProductVariant(
-                    id=v['VariantId'],
-                    product_id=product_id,
-                    list_price=ProductsUpdater.parse_price(v['ListPrice']),
-                    price=ProductsUpdater.parse_price(v['DisplayPrice']),
-                    price_per_gram=ProductsUpdater.parse_price(v['PricePerGram']),
-                    in_stock=False
-                )
-                for v in variant_prices
-            ]
+
+            variants = []
+            for v in variant_prices:
+                variant_id = v['VariantId']
+                db_variant = self.db_variants.get(variant_id, None)
+                updated_variant = ProductVariant(id=variant_id)
+                if db_variant:
+                    self.merge_variant(updated_variant, db_variant)
+
+                updated_variant.product_id = product_id
+                updated_variant.list_price = ProductsUpdater.parse_price(v['ListPrice'])
+                updated_variant.price = ProductsUpdater.parse_price(v['DisplayPrice'])
+                updated_variant.price_per_gram = ProductsUpdater.parse_price(v['PricePerGram'])
+                updated_variant.in_stock = False
+                variants.append(updated_variant)
+
             self.merge_variants(product, variants)
 
         self.populate_products_variants_details(products, products_cache_used)
@@ -118,21 +147,34 @@ class ProductsUpdater:
             p.in_stock = p.is_in_stock()
 
     @staticmethod
-    def merge_variants(product, variants_to_merge):
+    def merge_product(product_target: Product, product_source: Product) -> Product:
+        product_target.created = product_source.created
+        product_target.last_updated = product_source.last_updated
+        product_target.category = product_source.category
+        product_target.producer_name = product_source.producer_name
+        product_target.cannabis_type = product_source.cannabis_type
+        product_target.in_stock = product_source.in_stock
+
+        return product_target
+
+    @staticmethod
+    def merge_variants(product: Product, variants_to_merge: List[ProductVariant]):
         for v in variants_to_merge:
-            resulting_variant = product.get_variant(v.id)
-            if not resulting_variant:
-                resulting_variant = ProductVariant(id=v.id, product_id=v.product_id)
-                product.variants.append(resulting_variant)
+            existing_variant = product.get_variant(v.id)
+            if existing_variant:
+                product.variants.remove(existing_variant)
+            product.variants.append(v)
 
-            resulting_variant.in_stock = v.in_stock
-            resulting_variant.list_price = v.list_price
-            resulting_variant.price = v.price
-            resulting_variant.price_per_gram = v.price_per_gram
-
-    def _calculate_variant_availability_stats(self, variant: ProductVariant):
-        entries = self.store.get_variant_history(variant.product_id, variant.id)
-        return ProductHistoryAnalyzer(variant).calculate_percentage_in_stock(variant.product, entries)
+    @staticmethod
+    def merge_variant(variant_target: ProductVariant, variant_source: ProductVariant):
+        variant_target.created = variant_source.created
+        variant_target.last_updated = variant_source.last_updated
+        variant_target.in_stock = variant_source.in_stock
+        variant_target.out_of_stock_since = variant_source.out_of_stock_since
+        variant_target.list_price = variant_source.list_price
+        variant_target.price = variant_source.price
+        variant_target.price_per_gram = variant_source.price_per_gram
+        variant_target.specifications = variant_source.specifications
 
     def update_availability_stats(self, product: Product):
         variants = product.get_variants_in_stock()
@@ -149,61 +191,68 @@ class ProductsUpdater:
         availability = best_variant[1] if best_variant else None
         product.availability_stats = availability
 
+    def _calculate_variant_availability_stats(self, variant: ProductVariant) -> float:
+        entries = self.store.get_variant_history(variant.product_id, variant.id)
+        return ProductHistoryAnalyzer(variant).calculate_percentage_in_stock(variant.product, entries)
+
     @staticmethod
     def parse_price(raw_price: str):
         return float(raw_price.replace('$', ''))
 
     def populate_products_variants_details(self, products: List[Product], products_cache_used: bool):
-        db_products: List[Product]
-        if not products_cache_used:
-            db_products = self.store.get_products()
 
         variants_ids_map: Dict[string, ProductVariant] = {}
         for product in filter(lambda p: len(p.variants), products):
             variants_ids_map.update({v.id: v.product_id for v in product.variants})
 
-        variants_ids = list(variants_ids_map.keys())
-        variants_in_stock = self.get_variants_ids_in_stock(variants_ids)
-        for vid, pid in variants_ids_map.items():
-            product = find_by_id(products, pid)
-            variant = product.get_variant(vid)
-            variant.in_stock = vid in variants_in_stock
+        all_variants = ProductsUpdater.expand_all_variants(products)
+        variants_in_stock = self.get_variants_ids_in_stock(iter(all_variants.keys()))
+
+        for vid, variant in all_variants.items():
+            if self.stop_event.is_set():
+                raise InterruptedError
+
+            product = find_by_id(products, variant.product_id)
+            variant.in_stock = variant.id in variants_in_stock
+            if variant.in_stock and variant.out_of_stock_since:
+                variant.out_of_stock_since = None
+            elif not variant.in_stock and not variant.out_of_stock_since:
+                variant.out_of_stock_since = datetime.now()
 
             if products_cache_used:
                 specs = variant.specifications
             else:
-                db_product = find_by_id(db_products, pid)
-                db_variant = db_product and db_product.get_variant(vid)
+                db_variant = self.db_variants.get(vid, None)
                 specs = db_variant and db_variant.specifications
             # Yes.. we never re-fetch specifications (sometimes they change). we should eventually.
-            variant.specifications = specs or self.get_variant_specifications(pid, vid)
+            variant.specifications = specs or self.get_variant_specifications(variant.product_id, variant.id)
 
             product.category = variant.specifications['LevelTwoCategory']
             product.cannabis_type = variant.specifications['CannabisType']
             product.producer_name = variant.specifications['ProducerName']
             variant.quantity_description = SqdcFormatter.format_variant_quantity(variant.specifications['GramEquivalent'])
 
-    def get_variant_specifications(self, product_id, variant_id):
+    def get_variant_specifications(self, product_id, variant_id) -> Dict[str, str]:
         specifications = self.sqdc_client.api_get_specifications(product_id, variant_id)[0]
         attributes_reformated = {a['PropertyName']: a['Value']
                                  for a in specifications['Attributes']}
         return attributes_reformated
 
-    def get_variants_ids_in_stock(self, variants_ids):
+    def get_variants_ids_in_stock(self, variants_ids: Iterable[str]):
         if self.use_mocked_variants_in_stock:
             ids = ['628582000074', '688083000980', '688083001093', '688083001215', '688083001550', '688083001680', '688083001703', '627560010012',
-                    '627560010517', '628582000197', '628582000418', '628582000401', '628582000562', '628582000579', '628582000555', '628582000616',
-                    '629108002145', '629108001148', '629108017149', '629108018146', '629108020149', '629108022143', '629108026141', '629108034146',
-                    '629108033149', '629108037147', '629108038144', '671148401099', '671148401211', '671148401228', '688083000188', '688083000775',
-                    '688083000829', '688083000874', '688083000928', '688083001031', '688083001055', '688083001130', '688083001154', '688083001260',
-                    '688083001284', '688083001338', '688083001468', '688083001642', '688083002052', '688083002595', '694144000127', '694144000134',
-                    '694144000196', '697238111112', '697238111136', '697238111143', '697238111150', '697238111167', '697238111174', '697238111181',
-                    '697238111198', '697238111211', '697238111235', '697238111273', '826966000348', '826966009846', '826966009853', '826966010866',
-                    '826966010903', '826966011276', '826966011320', '826966011351', '826966011368', '826966011382', '842865000081', '842865000098',
-                    '842865000104', '847023000057', '688083001512', '697238111266', '629108503147', '671148403048', '694144000424', '694144000431',
-                    '694144000448', '826966000010', '826966000034', '826966000041', '826966010248', '826966010255', '826966011283', '694144001834',
-                    '694144001872', '694144001896', '697238111402', '697238111426', '697238111440', '629108014148', '671148404045', '688083001604',
-                    '688083002724', '694144001995', '697238111556', '697238111587', '826966009983', '826966010040', '847023000118']
+                   '627560010517', '628582000197', '628582000418', '628582000401', '628582000562', '628582000579', '628582000555', '628582000616',
+                   '629108002145', '629108001148', '629108017149', '629108018146', '629108020149', '629108022143', '629108026141', '629108034146',
+                   '629108033149', '629108037147', '629108038144', '671148401099', '671148401211', '671148401228', '688083000188', '688083000775',
+                   '688083000829', '688083000874', '688083000928', '688083001031', '688083001055', '688083001130', '688083001154', '688083001260',
+                   '688083001284', '688083001338', '688083001468', '688083001642', '688083002052', '688083002595', '694144000127', '694144000134',
+                   '694144000196', '697238111112', '697238111136', '697238111143', '697238111150', '697238111167', '697238111174', '697238111181',
+                   '697238111198', '697238111211', '697238111235', '697238111273', '826966000348', '826966009846', '826966009853', '826966010866',
+                   '826966010903', '826966011276', '826966011320', '826966011351', '826966011368', '826966011382', '842865000081', '842865000098',
+                   '842865000104', '847023000057', '688083001512', '697238111266', '629108503147', '671148403048', '694144000424', '694144000431',
+                   '694144000448', '826966000010', '826966000034', '826966000041', '826966010248', '826966010255', '826966011283', '694144001834',
+                   '694144001872', '694144001896', '697238111402', '697238111426', '697238111440', '629108014148', '671148404045', '688083001604',
+                   '688083002724', '694144001995', '697238111556', '697238111587', '826966009983', '826966010040', '847023000118']
 
             num_to_remove = random.randint(0, 5)
             for i in range(num_to_remove):

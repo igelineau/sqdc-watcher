@@ -12,6 +12,7 @@ from sqdc.dataobjects.productevent import ProductEvent
 from sqdc.logic.product_calculator import ProductCalculator
 from sqdc.server import SlackEndpointServer
 from sqdc.slack_client import SlackClient
+from sqdc.sqdc_client import SqdcClient
 from sqdc.watcherOptions import WatcherOptions
 from .SqdcStore import SqdcStore
 from .formatter import SqdcFormatter
@@ -28,7 +29,7 @@ class SqdcWatcher(Thread):
         Thread.__init__(self)
         self._stopped = event
         self.store = SqdcStore(options.is_test_mode)
-        self.products_updater = ProductsUpdater(self.store)
+        self.sqdc_client = SqdcClient()
         self.slack_client = SlackClient(options.slack_token)
         self.slack_post_url = options.slack_post_url
         self.display_format = 'table'
@@ -131,7 +132,9 @@ class SqdcWatcher(Thread):
             log.debug('Re-fetching products from SQDC API...')
 
         store_products = self.store.get_products()
-        updated_products = self.products_updater.get_products(cached_products=use_cached_products and self.store.get_products())
+
+        updater = ProductsUpdater(self.store, self.sqdc_client, self._stopped)
+        updated_products = updater.get_products(cached_products=use_cached_products and self.store.get_products())
 
         calculator = ProductCalculator(
             self.store,
@@ -147,8 +150,8 @@ class SqdcWatcher(Thread):
             for p in calculator.get_new_products():
                 p.is_new = True
 
-        # for p in calculator.updated_products:
-        #     self.products_updater.update_availability_stats(p)
+        for p in calculator.updated_products:
+            updater.update_availability_stats(p)
 
         log.info(f'Saving {len(calculator.updated_products)} updated products')
         self.store.save_products(calculator.updated_products)
@@ -167,7 +170,7 @@ class SqdcWatcher(Thread):
                 log.info(message)
 
                 if self.enable_slack_post:
-                    self.products_updater.sqdc_client.post_to_slack(self.slack_post_url, message)
+                    self.sqdc_client.post_to_slack(self.slack_post_url, message)
                     self.store.mark_products_notified(new_products_in_stock)
                 else:
                     log.warning('--enable-slack-post was not provided. Skipping Slack notification post.')

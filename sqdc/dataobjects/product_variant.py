@@ -19,6 +19,7 @@ class ProductVariant(Base):
     price = Column(Float)
     price_per_gram = Column(Float)
     quantity_description = Column(String)
+    out_of_stock_since = Column(DateTime)
 
     product = relationship('Product', lazy='subquery', back_populates='variants')
 
