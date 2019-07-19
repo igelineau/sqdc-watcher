@@ -27,20 +27,18 @@ class SqdcFormatter:
 
     @staticmethod
     def format_product(product: Product):
-        return '{}*{}* / {} - ({} {}) {}'.format(
-            SqdcFormatter.format_new_product_prefix(product),
-            SqdcFormatter.format_name_with_type(product),
-            product.brand,
-            SqdcFormatter.format_category(product),
-            SqdcFormatter.format_variants_available(product),
-            SqdcFormatter.format_url(product))
+        new_product_prefix = SqdcFormatter.format_new_product_prefix(product)
+        display_name = SqdcFormatter.format_name_with_type(product)
+        variants_available = SqdcFormatter.format_variants_available(product)
+        display_url = SqdcFormatter.format_url(product)
+        return f'{new_product_prefix}*{display_name}* / {product.brand} - ({variants_available}) {display_url}'
 
     @staticmethod
     def format_variants_available(product: Product):
         variants_in_stock: List[ProductVariant] = sorted(product.get_variants_in_stock(),
                                                          key=lambda v: float(v.specifications['GramEquivalent']))
         variants_descriptions = ', '.join(
-            [SqdcFormatter.format_variant_quantity(variant.specifications['GramEquivalent']) for variant in
+            [SqdcFormatter.format_variant_quantity(variant.specifications['GramEquivalent']) + f' ${variant.price:.2f}' for variant in
              variants_in_stock])
         return variants_descriptions
 
@@ -51,7 +49,7 @@ class SqdcFormatter:
 
     @staticmethod
     def format_brand_and_supplier(product: Product):
-        producer_name = product.get_specification('ProducerName')
+        producer_name = product.producer_name
         brand = product.brand
         components = []
         if SqdcFormatter.should_display_brand(brand):
@@ -96,7 +94,7 @@ class SqdcFormatter:
     @staticmethod
     def format_name_with_type(product):
         name = SqdcFormatter.format_name(product)
-        cannabis_type = product.get_specification('CannabisType')
+        cannabis_type = product.cannabis_type
         if cannabis_type:
             name = name + ', ' + cannabis_type
         return name
@@ -155,16 +153,12 @@ class SqdcFormatter:
              SqdcFormatter.apply_max_length(p.title, TITLE_MAX_WIDTH),
              SqdcFormatter.apply_max_length(p.get_specification('Strain'), STRAIN_MAX_WIDTH),
              SqdcFormatter.format_brand_and_supplier(p),
-             SqdcFormatter.apply_max_length(SqdcFormatter.format_category(p), 50),
+             SqdcFormatter.apply_max_length(p.category, 50),
              SqdcFormatter.format_type(p),
              SqdcFormatter.format_variants_available(p),
              SqdcFormatter.format_url(p)] for p in products]
         prefix = '\n' if prepend_with_newline else ''
         return prefix + tabulate(tabulated_data, headers=headers, tablefmt=grid_fmt) + '\n'
-
-    @staticmethod
-    def format_category(product: Product):
-        return product.get_specification('LevelTwoCategory')
 
     @staticmethod
     def trim_zeros(text):

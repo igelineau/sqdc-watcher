@@ -187,7 +187,6 @@ class ProductsUpdater:
         else:
             best_variant = sorted([tuple([v, self._calculate_variant_availability_stats(v)]) for v in variants], key=lambda x: x[1], reverse=True)[0]
 
-        # log.debug(f'Variant availability: {best_variant[1]}%')
         availability = best_variant[1] if best_variant else None
         product.availability_stats = availability
 
